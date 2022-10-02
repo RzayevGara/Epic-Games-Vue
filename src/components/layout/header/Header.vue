@@ -18,13 +18,21 @@
                     </li>
                 </ul>
             </div>
-            <div class="right-nav">
-                <button class="sign-button">
-                    <img src="../../../assets/image/svg/user.svg" alt="">
-                    sign in</button>
-                <button class="download-button">download</button>
+            <div :class="[showMenu ? 'right-nav right-nav-active' : 'right-nav']">
+                <ul>
+                    <li>store</li>
+                    <li>faq</li>
+                    <li>help</li>
+                    <li>unreal engine</li>
+                </ul>
+                <div class="buttons">
+                    <button class="sign-button">
+                        <img src="../../../assets/image/svg/user.svg" alt="">
+                        sign in</button>
+                    <button class="download-button">download</button>
+                </div>
             </div>
-            <ul class="burger">
+            <ul @click="burgerClick" :class="[showMenu ? 'burger burger-active' : 'burger']">
                 <li class="line"></li>
                 <li class="line"></li>
                 <li class="line"></li>
@@ -32,3 +40,14 @@
         </nav>
     </header>
 </template>
+
+
+<script setup>
+    import {ref} from 'vue'
+
+    const showMenu = ref(false)
+
+    function burgerClick(){
+        showMenu.value= !showMenu.value
+    }
+</script>
