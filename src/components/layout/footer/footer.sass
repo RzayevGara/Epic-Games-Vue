@@ -1,0 +1,96 @@
+footer
+    background-color: #202020
+    padding: 1rem 1.5rem
+    font-family: $openSans
+    @include responsive_lg
+            padding: 1.25rem 4.5rem 2.5rem
+    .footer-social
+        @include flex(row, space-between, center)
+        margin-top: 0.75rem
+        .social-icons
+            @include flex($align: center)
+            gap: .7rem
+            img
+                width: 30px
+        .arrow-up_box
+            border: 1px solid #ccc
+            @include size(2.1rem, 2.1rem)
+            @include flex(row, center, center)
+            cursor: pointer
+            transition: .3s
+            svg
+                path
+                    fill: #ccc
+                    transition: .3s
+            &:hover
+                transition: .3s
+                border-color: $blueButton
+                svg
+                    path
+                        transition: .3s
+                        fill: $blueButton
+    .footer-links
+        margin-top: 2rem
+        @include flex(column)
+        .footer-links_resources
+            h5
+                font-size: .9rem
+                color: #ccc
+                opacity: .4
+                letter-spacing: 0.2px
+                padding-bottom: .4rem
+            ul
+                float: left
+                padding-right: 1.5rem
+                padding-bottom: 1rem
+                li
+                    padding: 0.15rem 0
+                    color: #e7e7e7
+                    font-size: 0.856rem
+                    transition: .3s
+                    &:hover
+                        color: $blueButton
+                        cursor: pointer
+                        transition: .3s
+        .footer-links_madeBy
+            @extend .footer-links_resources
+    .footer-border
+        border-color: #333!important
+        border-style: solid none none
+        margin: 1.3rem 0
+    .footer-copyright
+        div
+            p
+                @include font(.7rem, $height: 2em)
+                color: aliceblue
+            @media (min-width: 1200px)
+                width: 50%
+    .footer-legal
+        margin-top: 1.2rem
+        padding: .5rem 0
+        @include flex(column, $align: center)
+        gap: 2rem
+        ul
+            @include flex(column, $align: center)
+            gap: .2rem
+            li
+                color: #e7e7e7
+                font-size: .75rem
+                transition: .3s
+                &:hover
+                    color: $blueButton
+                    cursor: pointer
+                    transition: .3s
+        .footer-legal_logos
+            @include flex(row, $align: center)
+            gap: 1rem
+            img
+                &:nth-child(1)
+                    width: 24px
+                &:nth-child(2)
+                    width: 28px
+        @include responsive_md
+            @include flex(row, space-between, center)
+            ul
+                @include flex(row)
+                gap: 1rem
