@@ -1,0 +1,122 @@
+.main-header
+    height: 80px
+    position: sticky
+    top: 0
+    z-index: 4
+    background-color: #121212
+    .main-header-container
+        @include flex(row, space-between, center)
+        width: 90%
+        height: 100%
+        max-width: 100rem
+        margin-left: auto
+        margin-right: auto
+        padding: 0 0.625rem
+        @include responsive_xl
+            width: 75%
+            justify-content: flex-start
+            position: relative
+        .search-box
+            input
+                display: none
+            @include responsive_xl
+                @include size(230px, 40px)
+                @include flex(row, $align: center)
+                background-color: $headerBG
+                border-radius: 24px
+                gap: 1rem
+                padding: 0 1rem
+                input
+                    display: flex
+                    @include size(100%, 100%)
+                    background-color: transparent
+                    border: none
+                    color: rgb(245, 245, 245)
+                    &:focus
+                        outline: none
+                    &::placeholder
+                        font-weight: 500
+                        color: #ccccccb8
+                        letter-spacing: .8px
+        .main-header-menu
+            @include responsive_xl
+                margin-left: 2rem
+                position: relative
+                width: 11.25rem
+            .desktop-list_menu
+                display: none
+                @media (min-width: 1280px)
+                    @include flex(row, $align: center)
+                    li
+                        a
+                            display: block
+                            padding: 1rem
+                            color: white
+                            opacity: .5
+                            font-size: 0.875rem
+                            letter-spacing: 0.2px
+                    .active-list
+                        opacity: 1
+            button
+                background-color: transparent
+                color: white
+                text-transform: capitalize
+                font-size: 0.875rem
+                @include flex(row, $align: center)
+                @media (min-width: 1280px)
+                    display: none
+                svg
+                    @include size(.8rem, .8rem)
+                    margin-left: .3rem
+                    transform: rotate(180deg)
+                    transition: .3s
+                .svg-active
+                    transform: rotate(0deg)
+                    transition: .3s
+            .bottom-menu
+                position: absolute
+                background: rgb(18, 18, 18)
+                left: 0px
+                top: 100%
+                padding: 27px 32px
+                width: 100%
+                ul
+                    li
+                        a
+                            display: block
+                            padding: 1rem 0
+                            color: white
+                            opacity: .5
+                            font-size: 0.875rem
+                            letter-spacing: 0.2px
+                        &:nth-child(2)
+                            border-top: 1px solid #cccccc5e
+                            border-bottom: 1px solid #cccccc5e
+                    .active-list
+                        opacity: 1
+                @include responsive_xl
+                    background: $headerBG
+                    top: 2.4rem
+                    padding: 10px 20px
+                    border-radius: 4px
+                    ul
+                        li
+                            border: none !important
+                            a
+                                padding: .5rem 0
+                @media (min-width: 1280px)
+                    display: none
+
+        .basket-icon
+            display: flex
+            p
+                display: none
+                font-size: 0.875rem
+                color: #cccccc75
+            @include responsive_xl
+                position: absolute
+                right: 0.625rem
+                svg
+                    display: none
+                p
+                    display: block
