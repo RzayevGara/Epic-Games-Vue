@@ -1,43 +1,27 @@
 <template>
     <section id="home">
         <div class="home-container">
+          <MySwiper :product="products.newReleases"/>
         </div>
     </section>
 </template>
 
 
 <script setup>
-    import {ref, inject} from 'vue'
-  
-  
-  const myProducts = ref([])
-  const commerce = inject("commerce");
+    import MySwiper from '../../components/home/swiper/mySwiper.vue'
+    import { useStore } from 'vuex';
+    import { ref } from 'vue';
 
 
-  const fetchProducts = () => {
-    commerce.products.list({
-        category_slug: 'new-release',
-    })
-    .then((products) => {
-      myProducts.value = products.data
-      console.log(myProducts.value)
-    })
-    .catch((error) => {
-      console.log('There is an error fetching products', error);
-    });
-  }
-  const fetchProductsMost = () => {
-    commerce.products.list({
-        category_slug: 'top-sellers',
-    })
-    .then((products) => {
-      myProducts.value = products.data
-      console.log(myProducts.value)
-    })
-    .catch((error) => {
-      console.log('There is an error fetching products', error);
-    });
-  }
-  fetchProducts()
-  fetchProductsMost()
+    const store = useStore()
+    const products = ref(store.getters.listProducts)
+
+
+
+    store.dispatch("fetchNewRelease")
+    store.dispatch("fetchMostPopular")
+    store.dispatch("fetchTopPlayerRated")
+    store.dispatch("fetchMostPlayedGames")
+    store.dispatch("fetchTopSellers")
+  
 </script>
