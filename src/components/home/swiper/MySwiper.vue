@@ -17,7 +17,7 @@
             </p>
             <p class="swiper-content_price">
                 Starting at
-                <p>{{items.price.formatted_with_symbol}}</p>
+                <span>{{items.price.formatted_with_symbol}}</span>
             </p>
         </div>
     </swiper-slide>
