@@ -7,8 +7,8 @@
       }"
       :modules="modules"
       class="mySwiper"
-    >
-      <swiper-slide v-for="items in product" :key="items.id">
+    > 
+      <swiper-slide v-if="product" class="test" v-for="items in product" :key="items.id">
         <img :src="items.image.url" alt="">
         <div class="swiper-content">
             <p class="swiper-content_title">out now</p>
@@ -22,7 +22,10 @@
         </div>
     </swiper-slide>
 
-    </swiper>
+    <swiper-slide v-for="item in Array(7).fill()" :key="item" v-else>
+        <Skeleton/>
+      </swiper-slide>
+  </swiper>
 </template>
 
 
@@ -31,6 +34,7 @@
     import { Swiper, SwiperSlide } from "swiper/vue";
     import { Pagination } from "swiper";
     import { ref } from 'vue';
+    import Skeleton from '../swiper-skeleton/Skeleton.vue'
     
     // Import Swiper styles
     import "swiper/css";

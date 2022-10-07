@@ -1,4 +1,5 @@
 import Commerce from '@chec/commerce.js';
+import ShuffleData from '../../data/shuffle-data'
 
 const commerce = (typeof import.meta.env.VITE_CHEC_PUBLIC_KEY !== 'undefined')
   ? new Commerce(import.meta.env.VITE_CHEC_PUBLIC_KEY)
@@ -12,7 +13,8 @@ export default {
             topPlayerRated: null,
             mostPlayedGames: null,
             topSellers: null
-        }
+        },
+        activeList: null
     },
     mutations: {
         newReleases(state, item) {
@@ -30,13 +32,19 @@ export default {
         topSellers(state, item) {
           state.products.topSellers = item
         },
+        setActiveList(state, item) {
+          state.activeList = item
+        }
     },
     actions: {
         fetchNewRelease ({commit}) {
             commerce.products.list({
-                category_slug: 'new-release'})
+                category_slug: 'new-release',
+                limit: 6
+              })
             .then((products) => {
                 commit("newReleases", products.data);
+                commit("setActiveList", products.data[0])
             })
             .catch((error) => {
               console.log('There is an error fetching products', error);
@@ -86,7 +94,9 @@ export default {
     getters: {
       listProducts(state){
         return state.products
-      }
+      },
+      getActiveList(state){
+        return state.activeList
+      },
     }
-
 }

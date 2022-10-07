@@ -1,0 +1,156 @@
+.swiper-title-pc
+    width: 100%
+    @include flex(row, space-between)
+    .swiper-title-pc_content
+        flex: 1
+        color: white
+        border-radius: 1rem
+        overflow: hidden
+        position: relative
+        .swiper-title-pc_container
+            &::after
+                z-index: 1
+                content: ''
+                position: absolute
+                top: 0
+                left: 0
+                @include size(100%, 100%)
+                background-image: linear-gradient(rgb(34 31 31 / 32%), rgb(0 0 0 / 78%))
+            img
+                width: 100%
+            .swiper-title-pc_text
+                position: absolute
+                bottom: 1rem
+                left: 1rem
+                @include flex(column, $align: start)
+                width: 20rem
+                z-index: 2
+                @media (min-width: 1440px)
+                    left: 40px
+                    bottom: 40px
+                @media (min-width: 1600px)
+                    left: 56px
+                    bottom: 56px
+                .swiper-title-pc_title
+                    @include font(12px, 500, $height: 1.3, $spacing: .5px)
+                    text-transform: uppercase
+                    margin-bottom: 5px
+                    @include responsive_xl
+                        margin-bottom: 10px
+                .swiper-title-pc_desc
+                    @include font(1rem, $height: 20px)
+                    margin-bottom: 10px
+                    height: 5rem
+                    overflow: hidden
+                    @media (min-width: 1280px)
+                        margin-bottom: 20px
+                    @media (min-width: 1440px)
+                        @include font(18px, $height: 1.625, $spacing: -.2px)
+                        margin-bottom: 30px
+                        height: 7.6rem
+                .swiper-title-pc_buy
+                    button
+                        margin-top: 10px
+                        color: rgb(18, 18, 18)
+                        background-color: rgb(255, 255, 255)
+                        min-width: 9.375rem
+                        height: 50px
+                        width: auto
+                        border-radius: 4px
+                        @include font(12px, 500, $spacing: .5px, $height: 15px, $align: center)
+                        @media (min-width: 1024px) and (max-width: 1279px)
+                            height: 40px
+                            font-size: 10px
+
+
+    .swiper-title-pc_item
+        @include flex
+        width: 10rem
+        margin-left: 1rem
+        @include responsive_xl
+            width: 11rem
+        @media (min-width: 1440px)
+            width: 11.25rem
+            margin-left: 1.25rem
+        @media (min-width: 1600px)
+            width: 16rem
+            margin-left: 2rem
+        ul
+            height: 100%
+            @include flex(column, space-between)
+            li
+                padding-right: 10px
+                @include flex(row, $align: center)
+                width: 100%
+                height: calc(100% / 6)
+                color: white
+                overflow: hidden
+                border-radius: .5rem
+                cursor: pointer
+                transition: .3s
+                position: relative
+                &:hover
+                    background-color: $headerBG
+                    transition: .3s
+                &:not(:nth-child(1))
+                    margin-top: 3px
+                @media (min-width: 1280px)
+                    border-radius: 1rem
+                .test1
+                    border-radius: 4px
+                    overflow: hidden
+                    flex-shrink: 0
+                    flex-basis: 28px
+                    margin: 0 10px
+                    @include responsive_xl
+                        flex-basis: 25px
+                    @media (min-width: 1280px)
+                        flex-basis: 40px
+                        border-radius: .5rem
+                    @media (min-width: 1440px)
+                        margin: 0 15px
+                    @media (min-width: 1600px)
+                        flex-basis: 43.5px
+                    .test2
+                        position: relative
+                        padding-bottom: calc(4 / 3 * 100%)
+                        .test3
+                            @include flex(row, $align: center)
+                            @include size(100%, 100%)
+                            position: absolute
+                            overflow: hidden
+                            img
+                                position: absolute
+                                width: 100%
+                                height: 100%
+                p
+                    overflow: hidden
+                    text-overflow: ellipsis
+                    display: -webkit-box
+                    -webkit-line-clamp: 2
+                            line-clamp: 2
+                    -webkit-box-orient: vertical
+                    @include font(12px, $spacing: .17px, $height: 1.5em)
+                    @media (min-width: 1440px)
+                        @include font(14px, $spacing: .2px, $height: 1.4em)
+                    @media  (min-width: 1600px)
+                        font-size: 1rem
+                        line-height: 1.625
+                .animation-box
+                    animation: timer-animation 7000ms linear
+                    position: absolute
+                    width: 100%
+                    height: 100%
+                    left: 0
+                    right: 0
+                    background-color: rgba(255,255,255,.08)
+                
+                @keyframes timer-animation
+                    0%
+                        transform: translate3d(-100%, 0, 0 )
+                    100%
+                        transform: translate3d(0, 0, 0 )
+            .active-list
+                background-color: rgba(255,255,255,.08)
+
+                    
