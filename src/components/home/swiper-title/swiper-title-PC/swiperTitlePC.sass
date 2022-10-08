@@ -76,8 +76,10 @@
             width: 16rem
             margin-left: 2rem
         ul
-            height: 100%
+            @include size(100%, 100%)
             @include flex(column, space-between)
+            .skeleton-list
+                background-color: $headerBG
             li
                 padding-right: 10px
                 @include flex(row, $align: center)

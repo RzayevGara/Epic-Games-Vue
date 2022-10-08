@@ -1,0 +1,75 @@
+@import './swiper-product-skeleton/swiperProductSkeleton'
+    
+.swiper-product_container
+    margin-top: 3rem
+    width: 100%
+    .swiper-product
+        @include flex(column-reverse)
+        .swiper-product_title
+            margin: 0 16px 18px
+            @include flex(row, space-between, center)
+            @include responsive_md
+                margin: 0 0 18px
+            h3
+                color: white
+                @include font(1.125rem, normal, $height: 1.4)
+                @include flex(row, $align: center)
+                span
+                    @include size(8px, 8px)
+                    @include flex
+                    margin-left: 5px
+                    svg
+                        transform: rotate(90deg)
+                        @include size(100%, 100%)
+            .slider-buttons
+                display: none
+                gap: 10px
+                button
+                    background-color: rgb(32, 32, 32)
+                    border: none
+                    border-radius: 50%
+                    @include size(1.875rem, 1.875rem)
+                    curosr: pointer
+                    &:hover
+                        background-color: rgb(32, 32, 32)
+                .prev-button
+                    svg
+                        transform: rotate(270deg)
+                        @include size(12px, 12px)
+                .next-button
+                    svg
+                        transform: rotate(90deg)
+                        @include size(12px, 12px)
+
+                @include responsive_md
+                    display: flex
+        .swiper-slide  
+            font-size: 18px 
+            @include flex(column)
+            color: white
+            img  
+                display: block 
+                width: 100% 
+                height: 100% 
+                object-fit: cover 
+                border-radius: 4px
+                margin-bottom: 10px
+            .swiper-product-content_title
+                margin-bottom: 5px
+                color: rgba(245, 245, 245, 0.6)
+                text-transform: uppercase
+                @include font(0.563rem, 500, $height: 15px, $spacing: 1px )
+                @media (min-width: 1024px) and (max-width: 1279px)
+                    font-size: 0.5rem
+            .swiper-product-content_name
+                font-size: 0.875rem
+                font-weight: normal
+                color: #f5f5f5
+                @media (min-width: 1024px) and (max-width: 1279px)
+                    font-size: 0.75rem
+            .swiper-product-content_price
+                margin-top: 10px
+                font-size: 0.875rem
+                color: #f5f5f5
+                @media (min-width: 1024px) and (max-width: 1279px)
+                    font-size: 0.75rem

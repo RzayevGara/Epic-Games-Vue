@@ -1,6 +1,6 @@
 <template>
   <div class="swiper-title-pc_item">
-    <ul>
+    <ul v-if="product">
       <li @click="activeList(item)" v-for="item in product" :key="item.id" :class="data.id===item.id?'active-list':''">
         <div class="test1">
             <div class="test2">
@@ -11,6 +11,10 @@
         </div>
         <p>{{ item.name }}</p>
         <div :class="data.id===item.id?'animation-box':''"></div>
+      </li>
+    </ul>
+    <ul v-else>
+      <li v-for="item in Array(6).fill()" :key="item" class="skeleton-list">
       </li>
     </ul>
   </div>

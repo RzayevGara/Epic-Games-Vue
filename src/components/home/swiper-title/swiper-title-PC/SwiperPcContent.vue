@@ -11,6 +11,10 @@
                 </div>
             </div>
         </div>
+        <div v-else class="swiper-title-pc_container">
+            <img src="../../../../assets/image/png/skeleton-img-pc.png"/>
+        </div>
+
     </div>
 </template>
 
