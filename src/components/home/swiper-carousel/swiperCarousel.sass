@@ -1,0 +1,112 @@
+@import './skeleton/swiperCarouselSkeleton'
+    
+.swiper-carousel_container
+    padding-left: 1rem
+    margin-top: 3rem
+    @include responsive_md
+        width: 100%
+        max-width: 100rem
+        margin-left: auto
+        margin-right: auto
+        padding: 0
+        @include responsive_xl
+            width: 75%
+    .swiper-carousel
+        width: 100% 
+        .swiper-wrapper
+            padding: 1rem 0
+            .swiper-slide  
+                display: flex
+                width: auto !important
+                margin-right: 0 !important
+                &:not(:nth-child(3))
+                    border-right: 1px solid rgba(255, 255, 255, 0.1)
+                @include responsive_md
+                    width: calc(100% / 3) !important
+
+                .swiper-carousel_item
+                    @include flex(column)
+                    padding: 0px 16px
+                    width: 300px
+                    @include responsive_md
+                        width: 100%
+                    .swiper-carousel-item_title
+                        @include flex(row, space-between, center)
+                        margin-bottom: 1rem
+                        h2
+                            color: white
+                            @include font(1.125rem, 400)
+                            @include responsive_md
+                                font-size: 1rem
+                            @media (min-width: 1440px)
+                                font-size: 1.375rem
+                        button
+                            background-color: transparent
+                            text-transform: uppercase
+                            @include font(0.563rem, 500, $spacing: 1px)
+                            color: white
+                            border: 1px solid rgba(245, 245, 245, 0.6)
+                            border-radius: 4px
+                            padding: 10px 20px
+                            @media (min-width: 1600px)
+                                font-size: 0.688rem
+                    ul
+                        @include flex(column)
+                        li
+                            padding: 1rem
+                            @include responsive_md
+                                padding: 0.625rem
+                            @include responsive_xl
+                                padding: .5rem 1rem
+                            @media (min-width: 1440px)
+                                padding: .625rem 1.25rem
+                            @media (min-width: 1600px)
+                                padding: 1rem 2rem
+
+                            .swiper-carousel-item_container
+                                @include flex(row, $align: center)
+                                .swiper-carousel-item_image
+                                    @include size(3rem, 4rem)
+                                    margin-right: 15px
+                                    border-radius: 4px
+                                    overflow: hidden
+                                    flex-shrink: 0
+                                    @media (min-width: 1440px)
+                                        @include size(3.75rem, 5rem)
+                                    @media (min-width: 1600px)
+                                        @include size(6rem, 8rem)
+                                    img
+                                        @include size(100%, 100%)
+                                .swiper-carousel-item_text
+                                    color: white
+                                    h3
+                                        @include font(0.875rem, 400)
+                                        text-overflow: ellipsis
+                                        overflow: hidden
+                                        width: 160px
+                                        white-space: nowrap
+                                        margin-bottom: 10px
+                                        @include responsive_md
+                                            width: 130px
+                                        @media (min-width: 1200px)
+                                            width: 12rem
+                                        @media (min-width: 1440px)
+                                            width: 14rem
+                                        @media (min-width: 1600px)
+                                            font-size: 1rem
+                                    p
+                                        font-size: 0.75rem
+                                        @media (min-width: 1600px)
+                                            font-size: .875rem
+
+        .swiper-pagination
+            position: static
+            margin: .1rem 0
+            .swiper-pagination-bullet
+                background: white
+                opacity: .3
+                @include size(6px, 6px)
+            .swiper-pagination-bullet-active
+                background: white
+                opacity: 1
+

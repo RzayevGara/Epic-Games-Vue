@@ -1,4 +1,5 @@
 <template>
+  <div class="mySwiper-container">
     <swiper
       :slidesPerView="1.2"
       :spaceBetween="15"
@@ -9,7 +10,7 @@
       class="mySwiper"
       v-if="product"
     > 
-      <swiper-slide class="test" v-for="items in product" :key="items.id">
+      <swiper-slide v-for="items in product" :key="items.id">
         <img :src="items.image.url" alt="">
         <div class="swiper-content">
             <p class="swiper-content_title">out now</p>
@@ -22,8 +23,8 @@
             </p>
         </div>
     </swiper-slide>
-
   </swiper>
+
     <swiper
       :slidesPerView="1.2"
       :spaceBetween="15"
@@ -38,6 +39,7 @@
         <Skeleton/>
       </swiper-slide>
   </swiper>
+  </div>
 </template>
 
 
