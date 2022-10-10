@@ -15,7 +15,17 @@
             slidesPerView: 5,
             spaceBetween: 16,
             allowTouchMove: false
-        }
+        },
+        1440: {
+            slidesPerView: 5,
+            spaceBetween: 20,
+            allowTouchMove: false
+        },
+        1600: {
+            slidesPerView: 5,
+            spaceBetween: 32,
+            allowTouchMove: false
+        },
       }"
     >
     <div class="swiper-product_title">

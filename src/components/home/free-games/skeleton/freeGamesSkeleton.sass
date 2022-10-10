@@ -1,0 +1,23 @@
+.free-games-skeleton_image
+    @include size(100%, 100%)
+    animation: pulse-bg 1s infinite
+    margin-bottom: 10px
+    border-radius: 4px
+.free-games-skeleton_title
+    animation: pulse-bg 1s infinite
+    @include size(8rem, 1.5rem)
+    border-radius: 4px
+.free-games-skeleton_date
+    animation: pulse-bg 1s infinite
+    @include size(4rem, 1.2rem)
+    border-radius: 4px
+    margin-top: 10px
+
+
+@keyframes pulse-bg
+    0%
+        background-color: #222222
+    50%
+        background-color: #2f2f2f
+    100%
+        background-color: #222222

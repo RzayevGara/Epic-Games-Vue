@@ -12,7 +12,8 @@ export default {
             mostPopular: null,
             topPlayerRated: null,
             mostPlayedGames: null,
-            topSellers: null
+            topSellers: null,
+            freeGames: null,
         },
         activeList: null
     },
@@ -32,9 +33,12 @@ export default {
         topSellers(state, item) {
           state.products.topSellers = item
         },
+        freeGames(state, item) {
+          state.products.freeGames = item
+        },
         setActiveList(state, item) {
           state.activeList = item
-        }
+        },
     },
     actions: {
         fetchNewRelease ({commit}) {
@@ -85,6 +89,16 @@ export default {
                 category_slug: 'top-sellers'})
             .then((products) => {
                 commit("topSellers", products.data);
+            })
+            .catch((error) => {
+              console.log('There is an error fetching products', error);
+            });
+        },
+        fetchFreeGames ({commit}) {
+            commerce.products.list({
+                category_slug: 'free-games'})
+            .then((products) => {
+                commit("freeGames", products.data);
             })
             .catch((error) => {
               console.log('There is an error fetching products', error);

@@ -1,0 +1,80 @@
+@import './skeleton/freeGamesSkeleton'
+    
+.free-games
+    margin-top: 2rem
+    margin-bottom: 2rem
+    @include responsive_xl
+        padding: 0 1rem
+    .free-games-container
+        border-radius: 4px
+        background-color: $headerBG
+        padding: 2rem 1rem
+        @include responsive_md
+            padding: 1.875rem
+        @include responsive_xl
+            margin-left: auto
+            margin-right: auto
+            width: 75%
+            max-width: 100rem
+            padding: 1.875rem 2.5rem
+        .free-games_title
+            @include flex(row, space-between, center)
+            margin-bottom: 2rem
+            h2
+                @include flex(row, $align: center)
+                color: white
+                @include font(1.125rem, 400)
+                span
+                    @include size(1.688rem, 1.688rem)
+                    display: block
+                    margin-right: 1.125rem
+                    svg
+                        @include size(100%, 100%)
+            button
+                @extend .view-more-btn
+                font-size: 0.75rem
+        ul
+            @media (min-width: 576px)
+                @include flex
+                gap: 1rem
+            li
+                margin-bottom: .5rem
+                height: 100%
+                .free-games_image_container
+                    display: flex
+                    flex-grow: 0
+                    flex-shrink: 0
+                    width: 100%
+                    position: relative
+                    overflow: hidden
+                    margin-bottom: 10px
+                    border-radius: 4px
+                    padding-bottom: 25px
+                    .free-games_image
+                        position: relative
+                        border-radius: 4px
+                        img
+                            height: 100%
+                            width: 100%
+                    .free-games_box
+                        height: 25px
+                        position: absolute
+                        bottom: 0
+                        left: 0
+                        right: 0
+                        background-color: rgb(0, 120, 242)
+                        @include flex(row, center, center)
+                        span
+                            @include font(.75rem, 700, $spacing: .5px)
+                            text-transform: uppercase
+                            color: white
+                .free-games_text
+                    margin-top: 1.5rem
+                    padding-bottom: 0.625rem
+                    h3
+                        @include font(0.875rem, 400)
+                        color: white
+                    p
+                        margin-top: 5px
+                        font-size: .875rem
+                        color: rgba(245, 245, 245, 0.6)

@@ -2,9 +2,9 @@
   <footer>
     <section class="footer-social">
       <div class="social-icons">
-        <img src="../../../assets/image/svg/facebook.svg" alt="icons" />
-        <img src="../../../assets/image/svg/twitter.svg" alt="icons" />
-        <img src="../../../assets/image/svg/youtube.svg" alt="icons" />
+        <FacebookIcon/>
+        <TwitterIcon/>
+        <YoutubeIcon/>
       </div>
       <div class="arrow-up_box">
         <ArrowIcon/>
@@ -66,7 +66,7 @@
         </ul>
         <div class="footer-legal_logos">
             <img src="../../../assets/image/svg/logo.png" alt="icons"/>
-            <img src="../../../assets/image/svg/unreal.svg" alt="icons"/>
+            <UnrealIcon/>
         </div>
     </section>
   </footer>
@@ -75,4 +75,9 @@
 
 <script setup>
     import ArrowIcon from '../../../assets/image/svg/arrow-up.svg'
+    import FacebookIcon from '../../../assets/image/svg/facebook.svg'
+    import TwitterIcon from '../../../assets/image/svg/twitter.svg'
+    import YoutubeIcon from '../../../assets/image/svg/youtube.svg'
+    import UnrealIcon from '../../../assets/image/svg/unreal.svg'
+
 </script>

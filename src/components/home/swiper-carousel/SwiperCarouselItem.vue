@@ -2,7 +2,7 @@
     <div class="swiper-carousel_item">
         <div class="swiper-carousel-item_title">
             <h2>{{title}}</h2>
-            <button>view more</button>
+            <ViewMore/>
         </div>
         <ul v-if="product">
             <li v-for="(item, index) in product" :key="item.id" v-show="index<6">
@@ -22,7 +22,8 @@
 </template>
     
 <script setup>
-import SwiperCarouselSkeleton from './skeleton/SwiperCarouselSkeleton.vue'
+    import SwiperCarouselSkeleton from './skeleton/SwiperCarouselSkeleton.vue'
+    import ViewMore from '../../shared/button/ViewMore.vue'
     import {ref, computed, watch} from 'vue'
     const props = defineProps({product: Object, title: String})
 </script>

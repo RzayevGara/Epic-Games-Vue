@@ -2,9 +2,9 @@
   <div class="swiper-title-pc_item">
     <ul v-if="product">
       <li @click="activeList(item)" v-for="item in product" :key="item.id" :class="data.id===item.id?'active-list':''">
-        <div class="test1">
-            <div class="test2">
-                <div class="test3">
+        <div class="image-container">
+            <div class="image-container_second">
+                <div class="image-container_third">
                     <img :src="item.image.url"/>
                 </div>
             </div>
