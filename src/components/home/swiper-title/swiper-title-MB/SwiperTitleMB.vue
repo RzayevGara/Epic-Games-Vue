@@ -11,7 +11,7 @@
       v-if="product"
     > 
       <swiper-slide v-for="items in product" :key="items.id">
-        <router-link :to="`p/${items.id}`">
+        <router-link :to="`p/${item.permalink}`">
           <img :src="items.image.url" alt="">
           <div class="swiper-content">
               <p class="swiper-content_title">out now</p>

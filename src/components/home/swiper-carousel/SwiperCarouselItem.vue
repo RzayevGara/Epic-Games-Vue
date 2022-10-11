@@ -6,7 +6,7 @@
         </div>
         <ul v-if="product">
             <li v-for="(item, index) in product" :key="item.id" v-show="index<6">
-                <router-link :to="`p/${item.id}`">
+                <router-link :to="`p/${item.permalink}`">
                     <div class="swiper-carousel-item_container">
                         <div class="swiper-carousel-item_image">
                             <img :src="item.image.url" alt="image"/>

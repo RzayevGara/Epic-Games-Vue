@@ -4,7 +4,7 @@ footer
     font-family: $openSans
     align-self: flex-end
     width: 100%
-    @include responsive_lg
+    @include responsive_md
             padding: 1.25rem 4.5rem 2.5rem
     .footer-social
         @include flex(row, space-between, center)
@@ -93,7 +93,7 @@ footer
                     width: 24px
                 &:nth-child(2)
                     width: 28px
-        @include responsive_md
+        @include responsive_sm
             @include flex(row, space-between, center)
             ul
                 @include flex(row)

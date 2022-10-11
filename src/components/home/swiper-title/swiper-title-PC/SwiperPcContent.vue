@@ -8,9 +8,8 @@
                 <div class="swiper-title-pc_buy">
                     <p class="swiper-title-pc_price">Starting at {{data.price.formatted_with_symbol}}</p>
                     <button>
-                    <router-link :to="`p/${data.id}`">
+                    <router-link :to="`p/${data.permalink}`">
                         buy now
-
                     </router-link>    
                     
                     </button>

@@ -2,17 +2,17 @@
   <section id="home">
     <div class="home-container">
       <SwiperTitle />
-      <SwiperProduct :product="productList?.mostPopular" title="Most Popular" />
-      <SwiperProduct :product="productList?.topPlayerRated" title="Top Player Rated" />
+      <SwiperCategory :product="productList?.mostPopular" title="Most Popular" />
+      <SwiperCategory :product="productList?.topPlayerRated" title="Top Player Rated" />
     </div>
     <SwiperCarousel />
     <div class="home-container">
-      <SwiperProduct :product="productList?.mostPlayedGames" title="Most Played" />
+      <SwiperCategory :product="productList?.mostPlayedGames" title="Most Played" />
     </div>
     <FreeGames :product="productList?.freeGames"/>
     <SwiperCarousel />
     <div class="home-container">
-      <SwiperProduct :product="productList?.topSellers" title="Top Sellers" />
+      <SwiperCategory :product="productList?.topSellers" title="Top Sellers" />
     </div>
     <div class="home-container">
       <Catalog/>
@@ -23,7 +23,7 @@
 
 <script setup>
 import SwiperTitle from "../../components/home/swiper-title/SwiperTitle.vue";
-import SwiperProduct from "../../components/home/swiper-product/SwiperProduct.vue";
+import SwiperCategory from "../../components/home//swiper-category/SwiperCategory.vue";
 import SwiperCarousel from "../../components/home/swiper-carousel/SwiperCarousel.vue";
 import FreeGames from '../../components/home/free-games/FreeGames.vue'
 import Catalog from '../../components/home/home-catalog/Catalog.vue'

@@ -3,43 +3,43 @@
     // margin: 3rem 0
     margin-top: 5rem
     margin-bottom: 2rem
-    @include responsive_md
+    @include responsive_sm
         @include flex(row, space-between, center)
     .home-catalog_image
         border-radius: 1rem
         overflow: hidden
         @include flex(row, center, center)
-        @include responsive_md
+        @include responsive_sm
             flex: 1
         img
             width: 100%
     .home-catalog_content
         padding-top: 1.25rem
         padding-left: 1rem
-        @include responsive_md
+        @include responsive_sm
             width: 40%
             padding-left: 1.563rem
-        @media (min-width: 1600px)
+        @include responsive_ul
             padding-left: 4rem
         .content-title
             color: white
             font-size: 1.125rem
             padding-bottom: 10px
-            @include responsive_xl
+            @include responsive_ls
                 font-size: 1rem
-            @media (min-width: 1280px)
+            @include responsive_lm
                 padding-bottom: 15px
-            @media (min-width: 1440px)
+            @include responsive_l
                 padding-bottom: 30px
                 font-size: 1.125rem
-            @media (min-width: 1600px)
+            @include responsive_ul
                 font-size: 1.375rem
         .content-desc
             font-size: 0.875rem
             color: rgba(245, 245, 245, 0.6)
-            @media (min-width: 1440px)
+            @include responsive_l
                 padding: 1rem 0
-            @media (min-width: 1600px)
+            @include responsive_ul
                 font-size: 1rem
         button
             display: none
@@ -49,13 +49,13 @@
             @include font(0.75rem, 500, $spacing: .5px)
             color: black
             padding: 1rem 1.5rem
-            @include responsive_md
+            @include responsive_sm
                 display: flex
-            @include responsive_xl
+            @include responsive_ls
                 padding: .8rem 1.1rem
                 font-size: 0.625rem
                 margin-top: 2.5rem
-            @media (min-width: 1280px)
+            @include responsive_lm
                 padding: 1.1rem 1.7rem
-            @media (min-width: 1600px)
+            @include responsive_ul
                 font-size: 0.875rem

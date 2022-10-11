@@ -15,7 +15,7 @@ export default {
     },
     actions: {
         fetchProduct ({commit}, id) {
-            commerce.products.retrieve(id)
+            commerce.products.retrieve(id, { type: 'permalink' })
             .then((products) => {
                 commit("setProduct", products);
             })

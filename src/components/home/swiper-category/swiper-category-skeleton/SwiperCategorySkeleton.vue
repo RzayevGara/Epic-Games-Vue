@@ -2,7 +2,7 @@
     <swiper
       :slidesPerView="1.5"
       :spaceBetween="20"
-      class="swiper-product"
+      class="swiper-category"
       :breakpoints="{
         768: {
             slidesPerView: 4,
@@ -26,7 +26,7 @@
         },
       }"
     >
-    <div class="swiper-product_title">
+    <div class="swiper-category_title">
         <h3>
           {{ title }}
           <span>
@@ -36,12 +36,12 @@
         <Buttons/>
     </div>
       <swiper-slide v-for="item in Array(7).fill()" :key="item">
-        <div class="swiper-product_skeleton">
+        <div class="swiper-category_skeleton">
         <div>
             <img src="../../../../assets/image/png/skeleton-img.png" alt="image" />
         </div>
-          <h2 class="swiper-product-content_name"></h2>
-          <p class="swiper-product-content_price"></p>
+          <h2 class="swiper-category-content_name"></h2>
+          <p class="swiper-category-content_price"></p>
         </div>
       </swiper-slide>
     </swiper>

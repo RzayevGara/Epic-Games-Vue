@@ -4,13 +4,13 @@
     padding-left: 1rem
     margin-top: 2.5rem
     margin-bottom: 2.5rem
-    @include responsive_md
+    @include responsive_sm
         width: 100%
         max-width: 100rem
         margin-left: auto
         margin-right: auto
         padding: 0
-        @include responsive_xl
+        @include responsive_ls
             width: 75%
     .swiper-carousel
         width: 100% 
@@ -22,14 +22,14 @@
                 margin-right: 0 !important
                 &:not(:nth-child(3))
                     border-right: 1px solid rgba(255, 255, 255, 0.1)
-                @include responsive_md
+                @include responsive_sm
                     width: calc(100% / 3) !important
 
                 .swiper-carousel_item
                     @include flex(column)
                     padding: 0px 16px
                     width: 300px
-                    @include responsive_md
+                    @include responsive_sm
                         width: 100%
                     .swiper-carousel-item_title
                         @include flex(row, space-between, center)
@@ -37,9 +37,9 @@
                         h2
                             color: white
                             @include font(1.125rem, 400)
-                            @include responsive_md
+                            @include responsive_sm
                                 font-size: 1rem
-                            @media (min-width: 1440px)
+                            @include responsive_l
                                 font-size: 1.375rem
                         button
                             @extend .view-more-btn
@@ -47,13 +47,13 @@
                         @include flex(column)
                         li
                             padding: 1rem
-                            @include responsive_md
+                            @include responsive_sm
                                 padding: 0.625rem
-                            @include responsive_xl
+                            @include responsive_ls
                                 padding: .5rem 1rem
-                            @media (min-width: 1440px)
+                            @include responsive_l
                                 padding: .625rem 1.25rem
-                            @media (min-width: 1600px)
+                            @include responsive_ul
                                 padding: 1rem 2rem
 
                             .swiper-carousel-item_container
@@ -64,9 +64,9 @@
                                     border-radius: 4px
                                     overflow: hidden
                                     flex-shrink: 0
-                                    @media (min-width: 1440px)
+                                    @include responsive_l
                                         @include size(3.75rem, 5rem)
-                                    @media (min-width: 1600px)
+                                    @include responsive_ul
                                         @include size(6rem, 8rem)
                                     img
                                         @include size(100%, 100%)
@@ -79,17 +79,17 @@
                                         width: 160px
                                         white-space: nowrap
                                         margin-bottom: 10px
-                                        @include responsive_md
+                                        @include responsive_sm
                                             width: 130px
                                         @media (min-width: 1200px)
                                             width: 12rem
-                                        @media (min-width: 1440px)
+                                        @include responsive_l
                                             width: 14rem
-                                        @media (min-width: 1600px)
+                                        @include responsive_ul
                                             font-size: 1rem
                                     p
                                         font-size: 0.75rem
-                                        @media (min-width: 1600px)
+                                        @include responsive_ul
                                             font-size: .875rem
 
         .swiper-pagination

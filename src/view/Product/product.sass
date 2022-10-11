@@ -1,3 +1,5 @@
+@import '../../components/product/product-swiper/swiperProduct'
+    
 #product
     padding-bottom: 5.5rem
     .product-container
@@ -6,47 +8,59 @@
         margin-left: auto
         margin-right: auto
         padding: 0 1rem
-        @include responsive_xl
+        @include responsive_ls
             width: 75%
         .product-title
-            background-color: red
-            height: 100px
+            margin-bottom: 1.25rem
+            @include responsive_sm
+                margin-bottom: 3.125rem
+            h2
+                color: white
+                @include font(1.125rem, 700, $height: 25px, $spacing: -.2px)
+                @include responsive_ls
+                    @include font(1.875rem, 400, $height: 35px, $spacing: -.3px)
+                @include responsive_l
+                    @include font(2.5rem, 400, $height: 45px, $spacing: -.5px)
+                @include responsive_ul
+                    @include font(3.125rem, 400, $height: 55px, $spacing: -1px)
+
+
         .product-content
             @include flex(column-reverse)
-            @include responsive_md
+            @include responsive_sm
                 @include flex(row)
             .product-swiper
-                background-color: #23ba62
+                // background-color: #23ba62
                 width: 100%
-                height: 500px
-                @include responsive_md
+                // height: 500px
+                @include responsive_sm
                     min-width: calc(100% - 18rem)
-                @include responsive_xl
+                @include responsive_ls
                     min-width: calc(100% - 17.5rem)
-                @media (min-width: 1280px)
+                @include responsive_lm
                     min-width: calc(100% - 24rem)
             aside
                 width: 100%
-                @include responsive_md
+                @include responsive_sm
                     width: 16rem
                     margin-left: 2rem
                     flex-shrink: 0
                     flex-grow: 0
-                @include responsive_xl
+                @include responsive_ls
                     width: 16.25rem
                     margin-left: 1.25rem
-                @media (min-width: 1280px)
+                @include responsive_lm
                     width: 20rem
                     margin-left: 4rem
                 .product-side
                     background-color: #2de111
                     height: 200px
-                    @include responsive_md
+                    @include responsive_sm
                         position: sticky
                         top: 100px
         .product-spec
             background-color: #ccc
             height: 400px
             width: 100%
-            @media (min-width: 1280px)
+            @include responsive_lm
                 width: calc(100% - 24rem)

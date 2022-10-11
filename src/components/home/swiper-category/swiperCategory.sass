@@ -1,15 +1,15 @@
-@import './swiper-product-skeleton/swiperProductSkeleton'
+@import './swiper-category-skeleton/swiperCategorySkeleton'
     
-.swiper-product_container
+.swiper-category_container
     margin-top: 2rem 
     margin-bottom: 2rem 
     width: 100%
-    .swiper-product
+    .swiper-category
         @include flex(column-reverse)
-        .swiper-product_title
+        .swiper-category_title
             margin: 0 16px 18px
             @include flex(row, space-between, center)
-            @include responsive_md
+            @include responsive_sm
                 margin: 0 0 18px
             h3
                 color: white
@@ -42,7 +42,7 @@
                         transform: rotate(90deg)
                         @include size(12px, 12px)
 
-                @include responsive_md
+                @include responsive_sm
                     display: flex
         .swiper-slide  
             font-size: 18px 
@@ -55,20 +55,20 @@
                 object-fit: cover 
                 border-radius: 4px
                 margin-bottom: 10px
-            .swiper-product-content_title
+            .swiper-category-content_title
                 margin-bottom: 5px
                 color: rgba(245, 245, 245, 0.6)
                 text-transform: uppercase
                 @include font(0.563rem, 500, $height: 15px, $spacing: 1px )
                 @media (min-width: 1024px) and (max-width: 1279px)
                     font-size: 0.5rem
-            .swiper-product-content_name
+            .swiper-category-content_name
                 font-size: 0.875rem
                 font-weight: normal
                 color: #f5f5f5
                 @media (min-width: 1024px) and (max-width: 1279px)
                     font-size: 0.75rem
-            .swiper-product-content_price
+            .swiper-category-content_price
                 margin-top: 10px
                 font-size: 0.875rem
                 color: #f5f5f5

@@ -4,7 +4,7 @@
     top: -2px
     z-index: 4
     background-color: #121212
-    @include responsive_xl
+    @include responsive_ls
         height: 100px
     .main-header-container
         @include flex(row, space-between, center)
@@ -14,14 +14,14 @@
         margin-left: auto
         margin-right: auto
         padding: 0 0.625rem
-        @include responsive_xl
+        @include responsive_ls
             width: 75%
             justify-content: flex-start
             position: relative
         .search-box
             input
                 display: none
-            @include responsive_xl
+            @include responsive_ls
                 @include size(230px, 40px)
                 @include flex(row, $align: center)
                 background-color: $headerBG
@@ -41,13 +41,13 @@
                         color: #ccccccb8
                         letter-spacing: .8px
         .main-header-menu
-            @include responsive_xl
+            @include responsive_ls
                 margin-left: 2rem
                 position: relative
                 width: 11.25rem
             .desktop-list_menu
                 display: none
-                @media (min-width: 1280px)
+                @include responsive_lm
                     @include flex(row, $align: center)
                     li
                         a
@@ -65,7 +65,7 @@
                 text-transform: capitalize
                 font-size: 0.875rem
                 @include flex(row, $align: center)
-                @media (min-width: 1280px)
+                @include responsive_lm
                     display: none
                 svg
                     @include size(.8rem, .8rem)
@@ -96,7 +96,7 @@
                             border-bottom: 1px solid #cccccc5e
                     .active-list
                         opacity: 1
-                @include responsive_xl
+                @include responsive_ls
                     background: $headerBG
                     top: 2.4rem
                     padding: 10px 20px
@@ -106,7 +106,7 @@
                             border: none !important
                             a
                                 padding: .5rem 0
-                @media (min-width: 1280px)
+                @include responsive_lm
                     display: none
 
         .basket-icon
@@ -115,7 +115,7 @@
                 display: none
                 font-size: 0.875rem
                 color: #cccccc75
-            @include responsive_xl
+            @include responsive_ls
                 position: absolute
                 right: 0.625rem
                 svg

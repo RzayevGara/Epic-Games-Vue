@@ -1,10 +1,10 @@
 <template>
-  <div class="swiper-product_container">
+  <div class="swiper-category_container">
     <swiper
       :slidesPerView="1.5"
       :spaceBetween="20"
       v-if="product"
-      class="swiper-product"
+      class="swiper-category"
       :breakpoints="{
         768: {
             slidesPerView: 4,
@@ -28,7 +28,7 @@
         },
       }"
     >
-    <div class="swiper-product_title">
+    <div class="swiper-category_title">
         <h3>
           {{ title }}
           <span>
@@ -38,17 +38,17 @@
         <Buttons/>
     </div>
       <swiper-slide v-for="item in product" :key="item.id" >
-        <router-link :to="`p/${item.id}`">
-          <div class="swiper-product_content">
+        <router-link :to="`p/${item.permalink}`">
+          <div class="swiper-category_content">
             <img :src="item.image.url" alt="image" />
-            <p class="swiper-product-content_title">base game</p>
-            <h2 class="swiper-product-content_name">{{ item.name }}</h2>
-            <p class="swiper-product-content_price">{{ item.price.formatted_with_symbol }}</p>
+            <p class="swiper-category-content_title">base game</p>
+            <h2 class="swiper-category-content_name">{{ item.name }}</h2>
+            <p class="swiper-category-content_price">{{ item.price.formatted_with_symbol }}</p>
           </div>
         </router-link>
       </swiper-slide>
     </swiper>
-  <SwiperProductSkeleton v-else :title="title"/>
+  <SwiperCategorySkeleton v-else :title="title"/>
   </div>
 </template>
 
@@ -58,7 +58,7 @@
     import { Swiper, SwiperSlide} from "swiper/vue";
     // Import Swiper styles
     import Buttons from './Buttons.vue'
-    import SwiperProductSkeleton from './swiper-product-skeleton/SwiperProductSkeleton.vue'
+    import SwiperCategorySkeleton from './swiper-category-skeleton/SwiperCategorySkeleton.vue'
     import "swiper/css";
     import ArrowIcon from '../../../assets/image/svg/arrow-up.svg'
 
