@@ -58,7 +58,7 @@
 
     .product-swiper_items
         @include flex(row, space-between, center)
-        margin-top: 20px
+        margin: 20px 0
         .product-swiper-items-leftArrow
             @include size(30px, 30px)
             @include flex(row, center, center)
@@ -74,17 +74,33 @@
         .product-swiper-items_slider
             overflow: hidden
             flex: 1 1 0%
-            max-width: 300px
+            max-width: 18.75rem
+            // @include responsive_ls
+            //     max-width: 25.313rem
+            // @include responsive_l
+            //     max-width: 43rem
+            // @include responsive_ul
+            //     max-width: 50.688rem
+
             ul
                 @include flex(row)
                 width: 400%
-                transform: translate3d(0%)
+                // transform: translate3d(calc(-25% + -15px), 0px, 0px)
+                transform: translate3d(calc(0% + 0px), 0px, 0px)
                 transition: all 250ms ease-in-out 0s
                 li
                     max-width: 90px
                     position: relative
                     flex-shrink: 0
-                    flex-basis: calc((100% - 120px) / 4)
+                    flex-basis: calc(100%  / 2)
+                    @include responsive_l
+                        max-width: 103px
+                    &:not(:nth-child(2))
+                        margin-left: 15px
                     .product-swiper-items_image
+                        border-radius: 4px
+                        overflow: hidden
+                        @include flex
+                        @include size(100%, 100%)
                         img
                             width: 100%
