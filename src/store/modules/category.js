@@ -1,5 +1,4 @@
 import Commerce from '@chec/commerce.js';
-import ShuffleData from '../../data/shuffle-data'
 
 const commerce = (typeof import.meta.env.VITE_CHEC_PUBLIC_KEY !== 'undefined')
   ? new Commerce(import.meta.env.VITE_CHEC_PUBLIC_KEY)
@@ -7,7 +6,7 @@ const commerce = (typeof import.meta.env.VITE_CHEC_PUBLIC_KEY !== 'undefined')
 
 export default {
     state:{
-        products: {
+        category: {
             newReleases: null,
             mostPopular: null,
             topPlayerRated: null,
@@ -19,22 +18,22 @@ export default {
     },
     mutations: {
         newReleases(state, item) {
-          state.products.newReleases = item
+          state.category.newReleases = item
         },
         mostPopular(state, item) {
-          state.products.mostPopular = item
+          state.category.mostPopular = item
         },
         topPlayerRated(state, item) {
-          state.products.topPlayerRated = item
+          state.category.topPlayerRated = item
         },
         mostPlayedGames(state, item) {
-          state.products.mostPlayedGames = item
+          state.category.mostPlayedGames = item
         },
         topSellers(state, item) {
-          state.products.topSellers = item
+          state.category.topSellers = item
         },
         freeGames(state, item) {
-          state.products.freeGames = item
+          state.category.freeGames = item
         },
         setActiveList(state, item) {
           state.activeList = item
@@ -107,7 +106,7 @@ export default {
     },
     getters: {
       listProducts(state){
-        return state.products
+        return state.category
       },
       getActiveList(state){
         return state.activeList

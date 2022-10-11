@@ -1,8 +1,10 @@
 import { createStore } from 'vuex'
-import product from './modules/products'
+import category from './modules/category'
+import product from './modules/product'
 
 export default createStore({
   modules: {
+    category,
     product
   },
   // state(){

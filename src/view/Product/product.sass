@@ -1,0 +1,52 @@
+#product
+    padding-bottom: 5.5rem
+    .product-container
+        width: 100%
+        max-width: 100rem
+        margin-left: auto
+        margin-right: auto
+        padding: 0 1rem
+        @include responsive_xl
+            width: 75%
+        .product-title
+            background-color: red
+            height: 100px
+        .product-content
+            @include flex(column-reverse)
+            @include responsive_md
+                @include flex(row)
+            .product-swiper
+                background-color: #23ba62
+                width: 100%
+                height: 500px
+                @include responsive_md
+                    min-width: calc(100% - 18rem)
+                @include responsive_xl
+                    min-width: calc(100% - 17.5rem)
+                @media (min-width: 1280px)
+                    min-width: calc(100% - 24rem)
+            aside
+                width: 100%
+                @include responsive_md
+                    width: 16rem
+                    margin-left: 2rem
+                    flex-shrink: 0
+                    flex-grow: 0
+                @include responsive_xl
+                    width: 16.25rem
+                    margin-left: 1.25rem
+                @media (min-width: 1280px)
+                    width: 20rem
+                    margin-left: 4rem
+                .product-side
+                    background-color: #2de111
+                    height: 200px
+                    @include responsive_md
+                        position: sticky
+                        top: 100px
+        .product-spec
+            background-color: #ccc
+            height: 400px
+            width: 100%
+            @media (min-width: 1280px)
+                width: calc(100% - 24rem)

@@ -15,7 +15,12 @@ const routes = [
                 name: "BrowsePage",
                 path: "browse",
                 component: ()=>import("../view/Browse/Browse.vue")
-            }
+            },
+            {
+                name: "ProductPage",
+                path: "p/:productID",
+                component: ()=>import("../view/Product/Product.vue")
+            },
         ]
     },
 ]

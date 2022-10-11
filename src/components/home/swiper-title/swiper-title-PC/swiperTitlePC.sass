@@ -18,10 +18,11 @@
                 background-image: linear-gradient(rgb(34 31 31 / 32%), rgb(0 0 0 / 78%))
             img
                 width: 100%
+                display: flex
             .swiper-title-pc_text
                 position: absolute
-                bottom: 1rem
-                left: 1rem
+                bottom: 2rem
+                left: 2rem
                 @include flex(column, $align: start)
                 width: 20rem
                 z-index: 2
@@ -51,16 +52,23 @@
                 .swiper-title-pc_buy
                     button
                         margin-top: 10px
-                        color: rgb(18, 18, 18)
                         background-color: rgb(255, 255, 255)
                         min-width: 9.375rem
                         height: 50px
                         width: auto
                         border-radius: 4px
-                        @include font(12px, 500, $spacing: .5px, $height: 15px, $align: center)
                         @media (min-width: 1024px) and (max-width: 1279px)
                             height: 40px
-                            font-size: 10px
+                        a
+                            color: rgb(18, 18, 18)
+                            @include font(12px, 500, $spacing: .5px, $height: 15px, $align: center)
+                            @include flex(row, center, center)
+                            @media (min-width: 1024px) and (max-width: 1279px)
+                                font-size: 10px
+
+
+
+                        
 
 
     .swiper-title-pc_item

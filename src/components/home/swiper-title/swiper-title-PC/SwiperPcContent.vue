@@ -7,7 +7,13 @@
                 <p class="swiper-title-pc_desc">{{data.description.replace(/<[^>]*>?/gm, '')}}</p>
                 <div class="swiper-title-pc_buy">
                     <p class="swiper-title-pc_price">Starting at {{data.price.formatted_with_symbol}}</p>
-                    <button>buy now</button>
+                    <button>
+                    <router-link :to="`p/${data.id}`">
+                        buy now
+
+                    </router-link>    
+                    
+                    </button>
                 </div>
             </div>
         </div>

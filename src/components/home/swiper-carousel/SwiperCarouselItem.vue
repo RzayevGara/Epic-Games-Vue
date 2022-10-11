@@ -6,15 +6,17 @@
         </div>
         <ul v-if="product">
             <li v-for="(item, index) in product" :key="item.id" v-show="index<6">
-                <div class="swiper-carousel-item_container">
-                    <div class="swiper-carousel-item_image">
-                        <img :src="item.image.url" alt="image"/>
+                <router-link :to="`p/${item.id}`">
+                    <div class="swiper-carousel-item_container">
+                        <div class="swiper-carousel-item_image">
+                            <img :src="item.image.url" alt="image"/>
+                        </div>
+                        <div class="swiper-carousel-item_text">
+                            <h3>{{item.name}}</h3>
+                            <p>{{item.price.formatted_with_symbol}}</p>
+                        </div>
                     </div>
-                    <div class="swiper-carousel-item_text">
-                        <h3>{{item.name}}</h3>
-                        <p>{{item.price.formatted_with_symbol}}</p>
-                    </div>
-                </div>
+                </router-link>
             </li>
         </ul>
         <SwiperCarouselSkeleton v-else/>

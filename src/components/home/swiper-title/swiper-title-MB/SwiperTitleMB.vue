@@ -11,17 +11,19 @@
       v-if="product"
     > 
       <swiper-slide v-for="items in product" :key="items.id">
-        <img :src="items.image.url" alt="">
-        <div class="swiper-content">
-            <p class="swiper-content_title">out now</p>
-            <p class="swiper-content_description">
-                {{items.description.replace(/<[^>]*>?/gm, '')}}
-            </p>
-            <p class="swiper-content_price">
-                Starting at
-                <span>{{items.price.formatted_with_symbol}}</span>
-            </p>
-        </div>
+        <router-link :to="`p/${items.id}`">
+          <img :src="items.image.url" alt="">
+          <div class="swiper-content">
+              <p class="swiper-content_title">out now</p>
+              <p class="swiper-content_description">
+                  {{items.description.replace(/<[^>]*>?/gm, '')}}
+              </p>
+              <p class="swiper-content_price">
+                  Starting at
+                  <span>{{items.price.formatted_with_symbol}}</span>
+              </p>
+          </div>
+        </router-link>
     </swiper-slide>
   </swiper>
 

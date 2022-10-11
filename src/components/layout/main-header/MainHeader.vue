@@ -40,7 +40,7 @@
 
     const route = useRoute()
 
-    const activePath = ref(route.path)    
+    const activePath = ref(route.path)
     const showMenu = ref(false)
     
     function openMenu(){

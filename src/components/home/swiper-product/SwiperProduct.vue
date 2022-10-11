@@ -37,13 +37,15 @@
         </h3>
         <Buttons/>
     </div>
-      <swiper-slide v-for="item in product" :key="item.id">
-        <div class="swiper-product_content">
-          <img :src="item.image.url" alt="image" />
-          <p class="swiper-product-content_title">base game</p>
-          <h2 class="swiper-product-content_name">{{ item.name }}</h2>
-          <p class="swiper-product-content_price">{{ item.price.formatted_with_symbol }}</p>
-        </div>
+      <swiper-slide v-for="item in product" :key="item.id" >
+        <router-link :to="`p/${item.id}`">
+          <div class="swiper-product_content">
+            <img :src="item.image.url" alt="image" />
+            <p class="swiper-product-content_title">base game</p>
+            <h2 class="swiper-product-content_name">{{ item.name }}</h2>
+            <p class="swiper-product-content_price">{{ item.price.formatted_with_symbol }}</p>
+          </div>
+        </router-link>
       </swiper-slide>
     </swiper>
   <SwiperProductSkeleton v-else :title="title"/>
