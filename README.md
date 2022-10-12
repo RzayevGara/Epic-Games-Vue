@@ -1,7 +1,15 @@
-# Vue 3 + Vite
+<h1 align="center" style="margin-top: 0px;">Epic Games Store Clone :computer:</h1>
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## :warning:	Project is Under Development.
 
-## Recommended IDE Setup
+## Used in this Project:
+```
+- Vue 3 + Vite
+- Vuex
+- Vue Router
+- Commerce JS
+- Sass
+- Swiper JS
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+# [Go To The Project](https://rzayevgara-epic-store-clone.netlify.app/#/)
