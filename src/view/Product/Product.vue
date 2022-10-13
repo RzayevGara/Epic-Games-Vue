@@ -5,25 +5,27 @@
                 <h2>{{product.name}}</h2>
             </div>
             <div class="product-content">
-                <SwiperProduct :item="product"/>
-                <aside>
-                    <div class="product-side"> side</div>
-                </aside>
+                <div class="product-content_detail">
+                    <SwiperProduct :item="product"/>
+                    <p>{{product.description.replace(/<[^>]*>?/gm, '')}}</p>
+                </div>
+                <SideBar :item="product"/>
             </div>
-
-            <div class="product-spec">
-                specs
-            </div>
+            <ProductSpec :item="product.description"/>
         </div>
-        <div v-else class="product-container">yox</div>
+        <ProductSkeleton v-else/>
     </section>
 </template>
 
 <script setup>
-import SwiperProduct from '../../components/product/product-swiper/SwiperProduct.vue'
+    import SwiperProduct from '../../components/product/product-swiper/SwiperProduct.vue'
+    import SideBar from '../../components/product/right-side-bar/SideBar.vue'
+    import ProductSpec from '../../components/product/product-spec/ProductSpec.vue'
+    import ProductSkeleton from '../../components/product/product-skeleton/ProductSkeleton.vue'
     import {useStore} from 'vuex'
     import { useRoute } from 'vue-router'
     import {ref, watch} from 'vue'
+
     const store = useStore()
     const route = useRoute()
     const activePath = ref(route.params.productID)
@@ -31,7 +33,7 @@ import SwiperProduct from '../../components/product/product-swiper/SwiperProduct
 
     const product = ref();
 
-    watch(store.state.product, (to)=>{
-        product.value = to.product
-    })
+    // watch(store.state.product, (to)=>{
+    //     product.value = to.product
+    // })
 </script>

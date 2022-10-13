@@ -1,0 +1,47 @@
+#product
+    .product-container
+        .product-name_skeleton
+            animation: pulse-bg 1s infinite
+            @include size(16rem, 2.2rem)
+            border-radius: 4px
+        .skeleton-content
+            @include flex(column-reverse)
+            @include responsive_sm
+                @include flex(row)
+            .skeleton-content_detail
+                width: 100%
+                @include responsive_sm
+                    min-width: calc(100% - 18rem)
+                @include responsive_ls
+                    min-width: calc(100% - 17.5rem)
+                @include responsive_lm
+                    min-width: calc(100% - 24rem)
+            .skeleton-content_side
+                width: 100%
+                margin-bottom: 20px
+                @include responsive_sm
+                    width: 16rem
+                    margin-left: 2rem
+                    flex-shrink: 0
+                    flex-grow: 0
+                    margin-bottom: 0
+                @include responsive_ls
+                    width: 16.25rem
+                    margin-left: 1.25rem
+                @include responsive_lm
+                    width: 20rem
+                    margin-left: 4rem
+        .skeleton-spec
+            width: 100%
+            color: white
+            margin-top: 3.125rem
+            @include responsive_lm
+                width: calc(100% - 24rem)
+
+    @keyframes pulse-bg
+        0%
+            background-color: #2a2a2a
+        50%
+            background-color: #323232
+        100%
+            background-color: #2a2a2a

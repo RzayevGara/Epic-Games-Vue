@@ -1,0 +1,94 @@
+.product-content
+    aside
+        width: 100%
+        margin-bottom: 20px
+        @include responsive_sm
+            width: 16rem
+            margin-left: 2rem
+            flex-shrink: 0
+            flex-grow: 0
+            margin-bottom: 0
+        @include responsive_ls
+            width: 16.25rem
+            margin-left: 1.25rem
+        @include responsive_lm
+            width: 20rem
+            margin-left: 4rem
+        .product-side
+            @include flex(column, $align: center)
+            @include responsive_sm
+                position: sticky
+                top: 100px
+            .product-side_images
+                img
+                    width: 100%
+                .product-side_img_pc
+                    width: 150px
+                    border-radius: 4px
+            .price
+                color: white
+                @include flex(column, $align: center)
+                margin-top: .7rem
+                gap: .7rem
+                @include responsive_sm
+                    align-self: flex-start
+                    align-items: flex-start
+                div
+                    text-transform: uppercase
+                    background-color: $headerBG
+                    padding: 5px 10px
+                    border-radius: 4px
+                    @include font(0.563rem, 500,$height: 15px, $spacing: 1px)
+                    @include responsive_ls
+                        font-size: 0.5rem
+                    @include responsive_lm
+                        font-size: 0.563rem
+                    @include responsive_ul
+                        font-size: 0.688rem
+                p
+                    @include font(0.875rem, $height: 20px, $spacing: 0.2px)
+                    @include responsive_ul
+                        @include font(1rem, $height: 20px, $spacing: 0)
+            .buttons
+                width: 100%
+                margin-top: .7rem
+                button
+                    @include size(100%, 50px)
+                    text-transform: uppercase
+                    @include font(0.875rem, 500, $spacing: 1px )
+                    border-radius: 4px
+                    @include responsive_sm
+                        @include font(0.75rem, .5px)
+                    @include responsive_ls
+                        height: 40px
+                        @include font(0.625rem, 1px)
+                    @include responsive_lm
+                        @include font(0.75rem, .5px)
+                        height: 50px
+                    @include responsive_ul
+                        @include font(0.875rem,$spacing: 1px )
+                .buy-now
+                    border: none
+                    background-color: rgb(254, 203, 2)
+                    color: black
+                .add-card
+                    background-color: transparent
+                    border: 1px solid rgba(245, 245, 245, 0.6)
+                    color: white
+                    margin-top: .7rem
+            .product-detail
+                width: 100%
+                margin-top: .7rem
+                p
+                    @include flex(row, space-between, center)
+                    color: rgba(245, 245, 245, 0.6)
+                    border-bottom: 1px solid rgba(245, 245, 245, 0.1)
+                    padding: 10px 0
+                    @include font(0.875rem, $height: 20px, $spacing: .2px)
+                    @include responsive_ul
+                        font-size: 1rem
+                        letter-spacing: 0
+                    div
+                        @include flex(row, $align: center)
+                        gap: 1rem
+                        color: white

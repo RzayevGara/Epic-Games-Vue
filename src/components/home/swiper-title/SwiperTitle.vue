@@ -7,7 +7,7 @@
     import SwiperTitleMB from './swiper-title-MB/SwiperTitleMB.vue';
     import SwiperTitlePC from './swiper-title-PC/SwiperTitlePC.vue'
     import { useStore } from 'vuex';
-    import { ref, onMounted } from 'vue';
+    import { ref} from 'vue';
     const width = ref()
 
     
