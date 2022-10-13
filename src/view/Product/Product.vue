@@ -33,7 +33,7 @@
 
     const product = ref();
 
-    // watch(store.state.product, (to)=>{
-    //     product.value = to.product
-    // })
+    watch(store.state.product, (to)=>{
+        product.value = to.product
+    })
 </script>
