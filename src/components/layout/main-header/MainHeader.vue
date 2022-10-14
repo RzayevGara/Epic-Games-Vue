@@ -8,7 +8,7 @@
             <div class="main-header-menu">
                 <ul class="desktop-list_menu">
                     <li><router-link exactActiveClass="active-list" :to="{name: 'HomePage'}">Discovery</router-link></li>
-                    <li><router-link exactActiveClass="active-list" :to="{name: 'BrowsePage'}">Browse</router-link></li>
+                    <li><router-link exactActiveClass="active-list" :to="{name: 'BrowsePage', query: {sortBy: 'releaseDate', sortDir: 'DESC'}}">Browse</router-link></li>
                     <li><router-link :to="{name: ''}">News</router-link></li>
                 </ul>
                 <button @click="openMenu">

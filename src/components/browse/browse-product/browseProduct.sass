@@ -1,0 +1,47 @@
+.browse-content
+    .browse-product
+        .browse-product_sort
+            @include flex(row, space-between, center)
+            .sort
+                @include flex(row, $align: center)
+                gap: .3rem
+                position: relative
+                .sort-text
+                    color: #f5f5f58a
+                    font-size: 0.875rem
+                    cursor: pointer
+                    opacity: .6
+                    transition: .1s
+                    span
+                        color: white
+                    &:hover
+                        opacity: 1
+                        transition: .1s
+                .sort-menu
+                    position: absolute
+                    top: 1.5rem
+                    background-color: $headerBG
+                    border-radius: 4px
+                    min-width: 11rem
+                    padding: 10px 0
+                    p
+                        padding: 8px 20px
+                        @extend .sort-text
+                        color: #f5f5f5
+                        &:hover
+                            text-decoration: underline
+                svg
+                    cursor: pointer
+                    transform: rotate(180deg)
+                    @include size(14px, 14px)
+                    transition: .2s
+                .showSVG
+                    transition: .2s
+                    transform: rotate(0deg)
+
+            .filter
+                @include flex(row, $align: center)
+                gap: .4rem
+                p
+                    color: white
+                    font-size: 0.875rem

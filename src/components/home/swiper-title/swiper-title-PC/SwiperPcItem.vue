@@ -52,6 +52,7 @@
 
     onUpdated(()=>{
       timerSwipe.value = setTimeout(ActiveListTimer, 7000)
+      console.log('test')
     })
 
 </script>
