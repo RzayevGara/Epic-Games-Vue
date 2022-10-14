@@ -27,7 +27,7 @@
                 </ul>
                 <div class="buttons">
                     <button class="sign-button">
-                        <img src="../../../assets/image/svg/user.svg" alt="">
+                        <UserIcon/>
                         sign in</button>
                     <button class="download-button">download</button>
                 </div>
@@ -43,11 +43,33 @@
 
 
 <script setup>
-    import {ref} from 'vue'
+    import {ref, watch} from 'vue'
+    import UserIcon from '../../../assets/image/svg/user.svg'
 
     const showMenu = ref(false)
 
     function burgerClick(){
         showMenu.value= !showMenu.value
+        if(showMenu.value){
+            document.getElementsByTagName('body')[0].classList.add('active-body')
+        }else{
+            document.getElementsByTagName('body')[0].classList.remove('active-body')
+        }
     }
+    const width = ref()
+
+    
+    function handleResize() {
+        width.value = window.innerWidth;
+    }
+
+    window.addEventListener('resize', handleResize);
+    handleResize()
+
+    watch(width, (to)=>{
+        if(to>768){
+            document.getElementsByTagName('body')[0].classList.remove('active-body')
+            showMenu.value = false
+        }
+    })
 </script>

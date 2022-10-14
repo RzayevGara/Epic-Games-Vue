@@ -2,8 +2,12 @@
     .product-container
         .product-name_skeleton
             animation: pulse-bg 1s infinite
-            @include size(16rem, 2.2rem)
+            @include size(12rem, 2rem)
             border-radius: 4px
+            @include responsive_sm
+                @include size(22rem, 2rem)
+                margin-bottom: 2rem
+
         .skeleton-content
             @include flex(column-reverse)
             @include responsive_sm
@@ -16,25 +20,66 @@
                     min-width: calc(100% - 17.5rem)
                 @include responsive_lm
                     min-width: calc(100% - 24rem)
+                .skeleton-content_image
+                    width: 100%
+                    animation: pulse-bg 1s infinite
+                    border-radius: 4px
+                div
+                    margin-left: auto
+                    margin-right: auto
+                    margin-top: .7rem
+                    max-width: 300px
+                    width: 100%
+                    @include flex(row, space-around, center)
+                    img
+                        width: 25%
+                        animation: pulse-bg 1s infinite
+                        border-radius: 4px
+                        @include responsive_l
+                            width: 30%
             .skeleton-content_side
                 width: 100%
-                margin-bottom: 20px
+                margin: 2.2rem 0
+                @include flex(column)
+                gap: .7rem
                 @include responsive_sm
                     width: 16rem
                     margin-left: 2rem
                     flex-shrink: 0
                     flex-grow: 0
                     margin-bottom: 0
+                    margin-top: 0
                 @include responsive_ls
                     width: 16.25rem
                     margin-left: 1.25rem
                 @include responsive_lm
                     width: 20rem
                     margin-left: 4rem
+                img
+                    width: 60%
+                    align-self: center
+                    animation: pulse-bg 1s infinite
+                    border-radius: 4px
+                .button
+                    @include size(100%, 50px)
+                    animation: pulse-bg 1s infinite
+                    border-radius: 4px
+                .text
+                    @include flex(row, space-between)
+                    width: 100%
+                    span
+                        animation: pulse-bg 1s infinite
+                        border-radius: 4px
+                        @include size(40%, 2rem)
+
+
         .skeleton-spec
             width: 100%
             color: white
             margin-top: 3.125rem
+            height: 400px
+            animation: pulse-bg 1s infinite
+            border-radius: 4px
             @include responsive_lm
                 width: calc(100% - 24rem)
 
