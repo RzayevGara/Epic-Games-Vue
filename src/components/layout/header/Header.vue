@@ -2,7 +2,9 @@
     <header>
         <nav>
             <div class="left-nav">
-                <img src="../../../assets/image/svg/logo.png" alt="">
+                <router-link to="/">
+                    <img src="../../../assets/image/svg/logo.png" alt="">
+                </router-link>
                 <ul>
                     <li class="active-list">Store
                         <div class="border-list"></div>

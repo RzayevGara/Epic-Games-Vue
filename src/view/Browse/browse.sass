@@ -4,12 +4,14 @@
     
 #browse
     padding-bottom: 5.5rem
+    overflow: hidden
     .browse-container
         width: 90%
         max-width: 100rem
         margin-left: auto
         margin-right: auto
-        @include responsive_sm
-            padding: 0 1rem
         @include responsive_ls
             width: 75%
+        .browse-content
+            @include flex(row)
+            position: relative

@@ -1,7 +1,16 @@
+@import './browse-item-skeleton/browseItemSkeleton'
+    
 .browse-content
     .browse-product
+        width: 100%
+        @include responsive_ls
+            width: calc(100% - 245px)
+            padding-right: 15px
         .browse-product_sort
             @include flex(row, space-between, center)
+            padding-top: 20px
+            @include responsive_ls
+                padding-top: 0
             .sort
                 @include flex(row, $align: center)
                 gap: .3rem
@@ -30,6 +39,11 @@
                         color: #f5f5f5
                         &:hover
                             text-decoration: underline
+                    .active-sort
+                        text-decoration: underline
+                        color: white
+                        opacity: 1
+
                 svg
                     cursor: pointer
                     transform: rotate(180deg)
@@ -45,3 +59,51 @@
                 p
                     color: white
                     font-size: 0.875rem
+        .browse-product_item
+            margin-top: .7rem
+            @include responsive_ls
+                margin-top: 1.6rem
+            .product-item_container
+                ul
+                    @include flex(row, space-between)
+                    flex-wrap: wrap
+                    li
+                        width: calc(50% - calc(16px / 2) * 0.5)
+                        margin-bottom: 1rem
+                        color: white
+                        @include responsive_sm
+                            width: calc(25% - 16px * 0.75)
+                        @include responsive_ls
+                            margin-bottom: 3rem
+                        @media (min-width: 1920px)
+                            width: calc(20% - 16px * 0.8)
+                        a
+                            color: inherit
+                            img
+                                border-radius: 4px
+                                width: 100%
+                                margin-bottom: 10px
+                            .title
+                                color: rgba(245, 245, 245, 0.6)
+                                text-transform: uppercase
+                                margin-bottom: 5px
+                                @include font(0.563rem, 500, $height: 15px, $spacing: 1px)
+                                @include responsive_ls
+                                    font-size: 0.5rem
+                                @include responsive_lm
+                                    font-size: 0.563rem
+                                @include responsive_ul
+                                    font-size: 0.688rem
+                            .name
+                                @include font(0.875rem, 400, $height: 1.4, $spacing: .2px)
+                                @include responsive_ls
+                                    font-size: 0.75rem
+                                @include responsive_lm
+                                    font-size: 0.875rem
+                                @include responsive_ul
+                                    font-size: 1rem
+                            .price
+                                margin-top: 10px
+                                @include font(0.875rem, 400, $height: 20px, $spacing: .2px)
+                                @include responsive_ul
+                                    font-size: 1rem

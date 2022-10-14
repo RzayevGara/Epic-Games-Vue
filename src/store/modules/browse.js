@@ -20,6 +20,7 @@ export default {
     },
     actions: {
         fetchBrowse ({commit}, data) {
+            console.log(data)
             commerce.products.list(data)
             .then((products) => {
                 commit("setBrowse", products);
@@ -41,7 +42,7 @@ export default {
         },
     },
     getters: {
-      getBrowse(state){
+    getBrowse(state){
         return state.browse
     },
     getGenreList(state){

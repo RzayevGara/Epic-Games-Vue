@@ -1,8 +1,14 @@
 .browse-container
     .swiper-genre_container
-        margin-top: 2rem 
-        margin-bottom: 2rem 
+        margin-top: 30px 
+        margin-bottom: 40px 
         width: 100%
+        @include responsive_ls
+            margin-bottom: 50px
+        @include responsive_ul
+            margin-top: 40px 
+            margin-bottom: 60px 
+
         .swiper-genre
             @include flex(column-reverse)
             .swiper-genre_title

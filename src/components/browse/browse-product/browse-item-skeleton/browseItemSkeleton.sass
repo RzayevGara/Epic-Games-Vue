@@ -1,0 +1,29 @@
+.product-item_container
+    .item-skeleton-container
+        img
+            width: 100%
+            animation: pulse-bg 1s infinite
+            border-radius: 4px
+            margin-bottom: 10px
+        .skeleton-title
+            @include size(35%, 1.2rem)
+            animation: pulse-bg 1s infinite
+            border-radius: 4px
+            margin-bottom: 10px
+        .skeleton-name
+            @include size(80%, 1.5rem)
+            animation: pulse-bg 1s infinite
+            border-radius: 4px
+        .skeleton-price
+            @include size(45%, 1.5rem)
+            animation: pulse-bg 1s infinite
+            border-radius: 4px
+            margin-top: 10px
+
+        @keyframes pulse-bg
+            0%
+                background-color: #2a2a2a
+            50%
+                background-color: #323232
+            100%
+                background-color: #2a2a2a
