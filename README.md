@@ -7,6 +7,7 @@
 - Vue 3 + Vite
 - Vuex
 - Vue Router
+- Vuetify 3.0
 - Commerce JS
 - Sass
 - Swiper JS
