@@ -12,7 +12,7 @@
                         color="grey"
                         size="small"
                         total-visible="6"
-                        @click="updatePage"
+                        @update:modelValue="updatePage"
                         ></v-pagination>
                     </v-container>
                 </v-col>
