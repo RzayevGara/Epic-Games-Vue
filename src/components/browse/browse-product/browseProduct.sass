@@ -1,8 +1,10 @@
 @import './browse-item-skeleton/browseItemSkeleton'
+@import '../browse-pagination/browsePagination'
     
 .browse-content
     .browse-product
         width: 100%
+        @include flex(column)
         @include responsive_ls
             width: calc(100% - 245px)
             padding-right: 15px

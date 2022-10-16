@@ -17,13 +17,6 @@
 </template>
 
 <script setup>
-    import {ref, watch} from 'vue'
-    import {useStore} from 'vuex'
     import BrowseItemSkeleton from './browse-item-skeleton/BrowseItemSkeleton.vue'
-    const store= useStore()
-    const items = ref()
-
-    watch(store.state.browse, (to)=>{
-        items.value = to.browse?.data
-    })
+    defineProps({items: Object})
 </script>

@@ -12,7 +12,7 @@
                     <li><router-link :to="{name: ''}">News</router-link></li>
                 </ul>
                 <button @click="openMenu">
-                    {{activePath==='/'?'Discovery':'Browse'}}
+                    {{activePath==='/browse'?'Browse':'Discovery'}}
                     <ArrowIcon :class="[showMenu && 'svg-active']"/>
                 </button>
                 <div v-if="showMenu" class="bottom-menu">

@@ -27,9 +27,7 @@
           </router-link>
         </swiper-slide>
       </swiper>
-    <div v-else>
-        yoxdu
-    </div>
+    <SwiperGenreSkeleton v-else/>
     </div>
   </template>
   
@@ -37,6 +35,7 @@
   <script setup>
       // Import Swiper Vue.js components
       import { Swiper, SwiperSlide} from "swiper/vue";
+      import SwiperGenreSkeleton from './swiper-genre-skeleton/SwiperGenreSkeleton.vue'
       // Import Swiper styles
       import Buttons from '../../home/swiper-category/Buttons.vue'
       import "swiper/css";

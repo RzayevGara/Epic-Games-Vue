@@ -31,12 +31,10 @@
 import ArrowIcon from "../../../assets/image/svg/arrow-up.svg";
 import FilterIcon from "../../../assets/image/svg/filter.svg";
 import { useRoute, useRouter } from "vue-router";
-import { useStore } from "vuex";
 import { ref, computed, inject  } from "vue";
 const route = useRoute();
 const router = useRouter();
 const fetchSort = inject('fetch')
-const store = useStore();
 const showSort = ref(false);
 
 function sortMenu() {
@@ -56,12 +54,14 @@ const sortName = computed(() => {
   }
 });
 
-function sortItem(query){
-  router.push({ query })
+function sortItem(queryData){
+  let queryNew =JSON.parse(JSON.stringify(route.query)) ;
+  queryNew.sortBy = queryData.sortBy
+  queryNew.sortDir = queryData.sortDir
+  router.push({ query: queryNew })
   .then(()=>{
     fetchSort()
   })
   showSort.value = false;
-  store.commit("setBrowse", null)
 }
 </script>

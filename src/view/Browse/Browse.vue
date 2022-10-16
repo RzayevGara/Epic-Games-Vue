@@ -3,7 +3,7 @@
         <div class="browse-container">
             <SwiperGenre :genre="genres" title="Popular Genres"/>
             <div class="browse-content">
-                <BrowseProduct/>
+                <BrowseProduct :product="product"/>
                 <BrowseFilter/>
             </div>
         </div>
@@ -29,12 +29,10 @@
     })
 
     if(Object.keys(route.query).length === 0){
-        console.log("object keys")
-        router.push({query: {sortBy: 'created_at', sortDir: 'desc'}})
+        router.push({query: {sortBy: 'created_at', sortDir: 'desc', page: 1}})
     }
 
     onMounted(()=>{
-        console.log("fetch")
         fetchSort()
     })
 
@@ -43,6 +41,7 @@
         store.dispatch('fetchBrowse',{
             category_slug: 'browse',
             limit: 20,
+            page: route.query.page,
             sortBy: route.query.sortBy!==undefined?route.query.sortBy:"created_at",
             sortDirection: route.query.sortDir!==undefined?route.query.sortDir:"desc"
         })
@@ -50,4 +49,9 @@
 
     provide("fetch",fetchSort )
 
+    const product = ref()
+
+    watch(store.state.browse, (to)=>{
+        product.value = to.browse
+    })
 </script>
