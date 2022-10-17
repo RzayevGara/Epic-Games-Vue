@@ -4,7 +4,7 @@
             <SwiperGenre :genre="genres" title="Popular Genres"/>
             <div class="browse-content">
                 <BrowseProduct :product="product"/>
-                <BrowseFilter/>
+                <BrowseFilter :filter="filter"/>
             </div>
         </div>
     </section>
@@ -22,7 +22,9 @@
     const router = useRouter()
     const route = useRoute()
     store.commit("setBrowse", null)
+    store.commit("setFilterRoute", route.query.query)
     store.dispatch('fetchGenreList')
+    store.dispatch('fetchFilter')
 
     watch(store.state.browse, (to)=>{
         genres.value = to.genreList
@@ -39,11 +41,11 @@
     
     const fetchSort = function(){
         store.dispatch('fetchBrowse',{
-            category_slug: 'browse',
+            category_slug: route.query.query?.length>0 && route.query.query || 'browse',
             limit: 20,
             page: route.query.page,
             sortBy: route.query.sortBy!==undefined?route.query.sortBy:"created_at",
-            sortDirection: route.query.sortDir!==undefined?route.query.sortDir:"desc"
+            sortDirection: route.query.sortDir!==undefined?route.query.sortDir:"desc",
         })
     }
 
@@ -53,5 +55,11 @@
 
     watch(store.state.browse, (to)=>{
         product.value = to.browse
+    })
+
+
+    const filter  = ref(store.getters.getFilter)
+    watch(store.state.browse, (to)=>{
+        filter.value =to.filter
     })
 </script>

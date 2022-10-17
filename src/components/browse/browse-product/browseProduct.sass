@@ -58,6 +58,9 @@
             .filter
                 @include flex(row, $align: center)
                 gap: .4rem
+                cursor: pointer
+                @include responsive_ls
+                    display: none
                 p
                     color: white
                     font-size: 0.875rem

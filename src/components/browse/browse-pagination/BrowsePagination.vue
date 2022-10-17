@@ -38,6 +38,4 @@
             fetchSort() 
         })
     }
-
-    console.log(typeof page.value)
 </script>

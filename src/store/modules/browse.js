@@ -7,7 +7,10 @@ const commerce = (typeof import.meta.env.VITE_CHEC_PUBLIC_KEY !== 'undefined')
 export default {
     state:{
         browse: null,
-        genreList: null
+        genreList: null,
+        filterMenuShow: false,
+        filter: null,
+        filterQuery: []
     },
     mutations: {
         setBrowse(state, item) {
@@ -16,6 +19,52 @@ export default {
         setGenreList(state, item) {
           state.genreList = item
         },
+        setFilterMenu(state, item) {
+          state.filterMenuShow = item
+        },
+        setFilter(state, item){
+          state.filter = item
+        },
+        setFilterQuery(state, data){
+          if(data.item==="Genre" || data.item==="Platform"){
+            if(!state.filterQuery.includes(data.child)){
+              state.filterQuery.push(data.child)
+            }else{
+              const index = state.filterQuery.indexOf(data.child)
+              if(index>-1){
+                state.filterQuery.splice(index, 1)
+              }
+            }
+          }else if(data.item==="Price"){
+            let test = state.filterQuery.some(el=>el.includes("under") || el.includes("above"));
+            if(!test){
+              state.filterQuery.push(data.child)
+            }
+            else{
+              if(state.filterQuery.includes(data.child)){
+                const index = state.filterQuery.indexOf(state.filterQuery.find(el=>el.includes("under") || el.includes("above")))
+                if(index>-1){
+                  state.filterQuery.splice(index, 1)
+                }
+              }else{
+                const index = state.filterQuery.indexOf(state.filterQuery.find(el=>el.includes("under") || el.includes("above")))
+                if(index>-1){
+                  state.filterQuery.splice(index, 1)
+                }
+                state.filterQuery.push(data.child)
+              }
+            }
+        }
+      },
+      setFilterRoute(state, item){
+        if(item){
+          if(Array.isArray(item)){
+            state.filterQuery = JSON.parse(JSON.stringify(item))
+          }else{
+            state.filterQuery.push(item)
+          }
+        }
+      }
 
     },
     actions: {
@@ -40,6 +89,17 @@ export default {
               console.log('There is an error fetching products', error);
             });
         },
+        fetchFilter ({commit}) {
+            commerce.categories.list({
+                parent_id: 'cat_aZWNoy1Z9o80JA'
+            })
+            .then((products) => {
+                commit("setFilter", products.data.reverse());
+            })
+            .catch((error) => {
+              console.log('There is an error fetching products', error);
+            });
+        },
     },
     getters: {
     getBrowse(state){
@@ -47,8 +107,16 @@ export default {
     },
     getGenreList(state){
           return state.genreList
-
-      }
+    },
+    getFilterMenu(state){
+      return state.filterMenuShow
+    },
+    getFilter(state){
+      return state.filter
+    },
+    getFilterQuery(state){
+      return state.filterQuery
+    }
 
     }
 }

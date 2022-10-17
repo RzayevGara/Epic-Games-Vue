@@ -1,10 +1,145 @@
 .browse-content
     .browse-filter
-        width: 15.313rem
-        height: 400px
+        width: 100%
+        height: 100%
         flex-shrink: 0
-        background-color: green
-        position: absolute
-        right: -100%
+        background-color: rgb(18, 18, 18)
+        position: fixed
+        right: 0
+        top: 0
+        z-index: 10
+        padding: 0 1rem 8.5rem
+        overflow: scroll
+        @include responsive_sm
+            width: 22.5rem
+            overflow-x: hidden
         @include responsive_ls
             position: static
+            overflow: visible
+            width: 15.313rem
+            overflow-x: hidden
+        .browse-filter_container
+            .browse-filter_title
+                padding: 0 12px
+                margin-bottom: 15px
+                p   
+                    padding-top: 6px
+                    height: 74px
+                    color: white
+                    font-size: 14px
+                    @include flex(column, center)
+                form
+                    div
+                        background-color: $headerBG
+                        @include size(100%, 40px)
+                        border-radius: 4px
+                        @include flex(row, $align: center)
+                        gap: 1rem
+                        padding: 0 10px
+                        overflow: hidden
+                        input
+                            color: white
+                            font-size: 14px
+                            &:focus
+                                outline: none
+                        svg
+                            @include size(13px, 13px)
+                            g
+                                stroke: white
+            .filter-category
+                color: white
+                .filter-item
+                    position: relative
+                    text-transform: uppercase
+                    color: rgba(255, 255, 255)
+                    width: 100%
+                    cursor: pointer
+                    &:after
+                        content: ''
+                        height: 1px
+                        width: 100vw
+                        position: absolute
+                        background-color: rgba(255, 255, 255, 0.1)
+                        bottom: 0
+                        left: -1rem
+                    &:nth-child(1)
+                        &:before
+                            content: ''
+                            height: 1px
+                            width: 100vw
+                            position: absolute
+                            background-color: rgba(255, 255, 255, 0.1)
+                            top: 0
+                            left: -1rem
+                        
+                    .filter-item_name
+                        padding: 25px 14px
+                        opacity: .6
+                        border: 1px solid transparent
+                        border-radius: 3px
+                        @include flex(row, space-between, center)
+                        @include font(0.688rem, 500, $height: 1.625, $spacing: .5px)
+                        &:hover
+                            cursor: pointer
+                            opacity: 1
+                        &:focus
+                            border-color: white
+                            outline: none
+                              
+                        svg
+                            width: 16px
+                            transform: rotate(180deg)
+                            transition: .3s
+                        .active-arrow
+                            transform: rotate(0deg)
+                            transition: .3s
+                    .filter-item_child
+                        padding: 1rem 0
+                        li
+                            @include font(0.688rem, 500, $height: 1.625, $spacing: .5px)
+                            opacity: .6
+                            padding: 14px
+                            margin-bottom: 10px
+                            @include flex(row, space-between, center)
+                            svg
+                                display: none
+                                path
+                                    stroke: white !important
+                        .active-list
+                            background-color: $headerBG
+                            border-radius: 4px
+                            opacity: 1
+                            svg
+                                display: flex
+            .filter-buttons
+                background-color: rgb(32, 32, 32)
+                @include size(100%, 98px)
+                @include flex(row, center, center)
+                position: fixed
+                left: 0
+                bottom: 0
+                padding: 30px
+                @include responsive_sm
+                    width: 360px
+                    right: 0
+                    left: auto
+                @include responsive_ls
+                    position: static
+                    width: 100%
+                    background-color: transparent
+                div
+                    width: 150px
+                    button
+                        color: white
+                        @include font(0.688rem, 500, $height: 1.625, $spacing: .5px)
+                        text-transform: uppercase
+                        cursor: pointer
+                    .clear-filter
+                        background-color: transparent
+                        border: none
+                    .done-filter
+                        background-color: rgb(0, 116, 228)
+                        height: 50px
+                        border-radius: 4px
+                        padding: 0 20px
+                        

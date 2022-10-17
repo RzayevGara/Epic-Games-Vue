@@ -20,7 +20,7 @@
       </div>
       <ArrowIcon @click="sortMenu" :class="showSort && 'showSVG'" />
     </div>
-    <div class="filter">
+    <div class="filter" @click="filterMenu">
       <p>Filter</p>
       <FilterIcon />
     </div>
@@ -31,7 +31,9 @@
 import ArrowIcon from "../../../assets/image/svg/arrow-up.svg";
 import FilterIcon from "../../../assets/image/svg/filter.svg";
 import { useRoute, useRouter } from "vue-router";
-import { ref, computed, inject  } from "vue";
+import { ref, computed, inject, watch  } from "vue";
+import {useStore} from "vuex";
+const store = useStore()
 const route = useRoute();
 const router = useRouter();
 const fetchSort = inject('fetch')
@@ -64,4 +66,30 @@ function sortItem(queryData){
   })
   showSort.value = false;
 }
+
+function filterMenu(){
+  store.commit("setFilterMenu", !store.state.browse.filterMenuShow)
+  if(store.state.browse.filterMenuShow){
+      document.getElementsByTagName('body')[0].classList.add('active-body')
+  }else{
+      document.getElementsByTagName('body')[0].classList.remove('active-body')
+  }
+}
+
+const width = ref()
+
+    
+function handleResize() {
+    width.value = window.innerWidth;
+}
+
+window.addEventListener('resize', handleResize);
+handleResize()
+
+watch(width, (to)=>{
+    if(to>768){
+        document.getElementsByTagName('body')[0].classList.remove('active-body')
+        // store.commit("setFilterMenu", false)
+    }
+})
 </script>
