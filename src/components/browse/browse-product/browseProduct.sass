@@ -17,6 +17,7 @@
                 @include flex(row, $align: center)
                 gap: .3rem
                 position: relative
+                z-index: 5
                 .sort-text
                     color: #f5f5f58a
                     font-size: 0.875rem
@@ -64,6 +65,12 @@
                 p
                     color: white
                     font-size: 0.875rem
+            .sort-black
+                position: fixed
+                @include size(100%, 100%)
+                z-index: 4
+                left: 0
+                top: 0
         .browse-product_item
             margin-top: .7rem
             @include responsive_ls

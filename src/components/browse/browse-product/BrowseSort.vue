@@ -21,9 +21,10 @@
       <ArrowIcon @click="sortMenu" :class="showSort && 'showSVG'" />
     </div>
     <div class="filter" @click="filterMenu">
-      <p>Filter</p>
+      <p>Filter ({{filterQuery.length}})</p>
       <FilterIcon />
     </div>
+    <div class="sort-black" v-if="showSort" @click="closeSort"></div>
   </div>
 </template>
 
@@ -38,6 +39,11 @@ const route = useRoute();
 const router = useRouter();
 const fetchSort = inject('fetch')
 const showSort = ref(false);
+let filterQuery = ref(store.getters.getFilterQuery)
+
+watch(store.state.browse, (to)=>{
+        filterQuery.value = to.filterQuery
+})
 
 function sortMenu() {
   showSort.value = !showSort.value;
@@ -74,6 +80,10 @@ function filterMenu(){
   }else{
       document.getElementsByTagName('body')[0].classList.remove('active-body')
   }
+}
+
+function closeSort(){
+  showSort.value = false;
 }
 
 const width = ref()

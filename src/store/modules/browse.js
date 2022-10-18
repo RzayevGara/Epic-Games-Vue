@@ -69,7 +69,6 @@ export default {
     },
     actions: {
         fetchBrowse ({commit}, data) {
-          console.log(data)
           commit("setBrowse", null);
             commerce.products.list(data)
             .then((products) => {

@@ -22,7 +22,7 @@
     const route = useRoute()
     const store= useStore()
     const filterChild = ref(false)
-    let filterQuery = ref(store.state.browse.filterQuery )
+    let filterQuery = ref(store.getters.getFilterQuery )
     defineProps({ item: Object, doneFilterPC: Function})
 
     function showFilterChild(){
@@ -32,5 +32,9 @@
     function selectOption(item, child){
         store.commit("setFilterQuery", {item, child})
     }
+
+    watch(store.state.browse, (to)=>{
+      filterQuery.value = to.filterQuery
+    })
 
 </script>

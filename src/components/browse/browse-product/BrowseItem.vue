@@ -23,5 +23,4 @@
 <script setup>
     import BrowseItemSkeleton from './browse-item-skeleton/BrowseItemSkeleton.vue'
     const props = defineProps({items: Object})
-    console.log(props.items)
 </script>

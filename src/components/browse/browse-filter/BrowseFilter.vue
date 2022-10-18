@@ -4,13 +4,13 @@
         <div class="browse-filter_black" @click="clickMenuOutside"></div>
         <div class="browse-filter_container ">
             <div class="browse-filter_title">
-                <p>Filters</p>
-                <form>
+                <p>Filters ({{filterQuery.length}})</p>
+                <!-- <form>
                     <div>
                         <SearchIcon/>
                         <input type="text" placeholder="Keywords"/>
                     </div>
-                </form>
+                </form> -->
             </div>
             <ul class="filter-category">
                 <li class="filter-item" v-for="item in filter" :key="item.id">
@@ -32,17 +32,17 @@
     <div v-if="width>=1024" class="browse-filter">
         <div class="browse-filter_container">
             <div class="browse-filter_title">
-                <p>Filters</p>
-                <form>
+                <p>Filters ({{filterQuery.length}})</p>
+                <!-- <form>
                     <div>
                         <SearchIcon/>
                         <input type="text" placeholder="Keywords"/>
                     </div>
-                </form>
+                </form> -->
             </div>
             <ul class="filter-category">
                 <li class="filter-item" v-for="item in filter" :key="item.id">
-                    <BrowseFilterItem :item="item" :doneFilterPC="doneFilterPC"/>
+                    <BrowseFilterItem :item="item" :doneFilterPC="debounceFilterPC"/>
                 </li>
             </ul>
         </div>
@@ -56,6 +56,7 @@
     import {ref, watch, inject} from 'vue'
     import SearchIcon from '../../../assets/image/svg/search-icon.svg'
     import BrowseFilterItem from './BrowseFilterItem.vue'
+    import debounce from "lodash/debounce"
     const store = useStore()
     const filterMenu = ref(store.getters.getFilterMenu)
     let filterQuery = ref(store.getters.getFilterQuery)
@@ -120,6 +121,8 @@
             fetchSort()
         })
     }
+
+    const debounceFilterPC = debounce(function(){doneFilterPC()}, 1300)
 
 
     const width = ref()

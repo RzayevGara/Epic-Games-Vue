@@ -11,6 +11,7 @@
 - Commerce JS
 - Sass
 - Swiper JS
+- Lodash
 ```
 
 # [Go To The Project](https://rzayevgara-epic-store-clone.netlify.app/#/)
