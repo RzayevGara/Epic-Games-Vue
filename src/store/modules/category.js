@@ -14,7 +14,8 @@ export default {
             topSellers: null,
             freeGames: null,
         },
-        activeList: null
+        activeList: null,
+        search: null
     },
     mutations: {
         newReleases(state, item) {
@@ -38,6 +39,9 @@ export default {
         setActiveList(state, item) {
           state.activeList = item
         },
+        setSearch(state, item) {
+          state.search = item
+        }
     },
     actions: {
         fetchNewRelease ({commit}) {
@@ -103,6 +107,19 @@ export default {
               console.log('There is an error fetching products', error);
             });
         },
+        fetchSearch ({commit}, data) {
+          commit("setSearch", []);
+          commerce.products.list({
+            category_slug: "browse",
+            query: data
+          })
+          .then((products) => {
+            commit("setSearch", products.data);
+          })
+          .catch((error) => {
+            commit("setSearch", null); 
+          });
+      },
     },
     getters: {
       listProducts(state){
@@ -111,5 +128,8 @@ export default {
       getActiveList(state){
         return state.activeList
       },
+      getSearch(state){
+        return state.search
+      }
     }
 }

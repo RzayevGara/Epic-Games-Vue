@@ -19,6 +19,8 @@ export default {
     },
     actions: {
         fetchProduct ({commit}, id) {
+          commit("setProduct", null);
+          commit("setActiveImageID", null);
             commerce.products.retrieve(id, { type: 'permalink' })
             .then((products) => {
                 commit("setProduct", products);

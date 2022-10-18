@@ -4,8 +4,15 @@
     top: -2px
     z-index: 4
     background-color: #121212
+    // position: relative
     @include responsive_ls
         height: 100px
+    .search-black
+        @include size(100%, 100%)
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 4
     .main-header-container
         @include flex(row, space-between, center)
         width: 90%
@@ -17,16 +24,34 @@
             width: 75%
             justify-content: flex-start
             position: relative
-        .search-box
-            input
-                display: none
-            @include responsive_ls
-                @include size(230px, 40px)
-                @include flex(row, $align: center)
+        .main-header_search
+            z-index: 5
+            .mobile-search
+                @include responsive_ls
+                    display: none
+            .search-box
+                position: absolute
+                left: 0
+                top: 0
+                z-index: 5
                 background-color: $headerBG
-                border-radius: 24px
-                gap: 1rem
-                padding: 0 1rem
+                @include size(100%, 80px)
+                @include flex(row, space-between, center)
+                padding: 0 1.8rem
+                gap: 20px
+                @include responsive_ls
+                    @include size(230px, 40px)
+                    border-radius: 24px
+                    gap: 1rem
+                    padding: 0 1rem
+                    position: static
+                svg
+                    @include size(18px, 18px)
+                    path
+                        fill: white
+                .close-icon
+                    @include responsive_ls
+                        display: none
                 input
                     display: flex
                     @include size(100%, 100%)
@@ -41,6 +66,52 @@
                         font-weight: 500
                         color: #ccccccb8
                         letter-spacing: .8px
+            ul
+                position: absolute
+                top: 78px
+                left: 0
+                background-color: $headerBG
+                width: 100%
+                max-height: 18rem
+                overflow-y: auto
+                padding: .7rem 1.8rem
+                @include responsive_ls
+                    width: 50rem
+                    border-radius: 4px
+                li
+                    a
+                        height: 60px
+                        @include flex(row, $align: center)
+                        gap: 15px
+                        img
+                            width: 32px
+                            border-radius: 4px
+                        p
+                            font-size: 14px
+                            color: white
+                            text-overflow: ellipsis
+                            overflow: hidden
+                            width: 80%
+                            white-space: nowrap
+                .search-skeleton-list
+                    @keyframes pulse-bg-white
+                        0%
+                            background-color: #5c5c5c
+                        50%
+                            background-color: #484848
+                        100%
+                            background-color: #5c5c5c
+                    a
+                        img
+                            animation: pulse-bg-white 1s infinite
+                            width: 32px
+                            border-radius: 4px
+                        p
+                            width: 70%
+                            height: 1.3rem
+                            animation: pulse-bg-white 1s infinite
+                            border-radius: 4px
+
         .main-header-menu
             @include responsive_ls
                 margin-left: 2rem

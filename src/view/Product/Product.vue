@@ -36,4 +36,9 @@
     watch(store.state.product, (to)=>{
         product.value = to.product
     })
+
+    watch(route, (to)=>{
+        activePath.value = to.params.productID
+        store.dispatch('fetchProduct', activePath.value)
+    }, {deep: true})
 </script>
