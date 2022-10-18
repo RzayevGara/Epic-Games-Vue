@@ -1,24 +1,34 @@
 .browse-content
     .browse-filter
-        width: 100%
-        height: 100%
-        flex-shrink: 0
-        background-color: rgb(18, 18, 18)
-        position: fixed
-        right: 0
-        top: 0
-        z-index: 10
-        padding: 0 1rem 8.5rem
-        overflow: scroll
-        @include responsive_sm
-            width: 22.5rem
-            overflow-x: hidden
-        @include responsive_ls
-            position: static
-            overflow: visible
-            width: 15.313rem
-            overflow-x: hidden
+        .browse-filter_black
+            width: 100%
+            height: 100%
+            background-color: rgba(18, 18, 18, 0.522)
+            position: fixed
+            left: 0
+            top: 0
+            z-index: 10
         .browse-filter_container
+            width: 100%
+            height: 100%
+            flex-shrink: 0
+            background-color: rgb(18, 18, 18)
+            position: fixed
+            right: 0
+            top: 0
+            z-index: 11
+            padding: 0 1rem 8.5rem
+            overflow: scroll
+            @include responsive_sm
+                width: 22.5rem
+                overflow-x: hidden
+            @include responsive_ls
+                width: 15.313rem
+                flex-shrink: 0
+                background-color: rgb(18, 18, 18)
+                padding: 0 1rem 8.5rem
+                overflow: hidden
+                position: static
             .browse-filter_title
                 padding: 0 12px
                 margin-bottom: 15px
@@ -40,6 +50,7 @@
                         input
                             color: white
                             font-size: 14px
+                            @include size(100%,100%)
                             &:focus
                                 outline: none
                         svg
@@ -85,7 +96,7 @@
                         &:focus
                             border-color: white
                             outline: none
-                              
+                                
                         svg
                             width: 16px
                             transform: rotate(180deg)
@@ -123,10 +134,6 @@
                     width: 360px
                     right: 0
                     left: auto
-                @include responsive_ls
-                    position: static
-                    width: 100%
-                    background-color: transparent
                 div
                     width: 150px
                     button
@@ -142,4 +149,3 @@
                         height: 50px
                         border-radius: 4px
                         padding: 0 20px
-                        

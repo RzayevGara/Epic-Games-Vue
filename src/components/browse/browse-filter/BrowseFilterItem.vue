@@ -4,7 +4,7 @@
     <ArrowIcon :class="filterChild===true && 'active-arrow'"/>
   </div>
   <ul class="filter-item_child" v-if="filterChild">
-    <li v-for="child in item.children" :key="child.id" @click="selectOption(item.name, child.slug)" 
+    <li v-for="child in item.children" :key="child.id" @click="[selectOption(item.name, child.slug), doneFilterPC && doneFilterPC()]"
     :class="filterQuery.includes(child.slug)?'active-list':undefined"
     >
       {{ child.name }}
@@ -23,7 +23,7 @@
     const store= useStore()
     const filterChild = ref(false)
     let filterQuery = ref(store.state.browse.filterQuery )
-    defineProps({ item: Object})
+    defineProps({ item: Object, doneFilterPC: Function})
 
     function showFilterChild(){
         filterChild.value = !filterChild.value

@@ -70,8 +70,11 @@
                 margin-top: 1.6rem
             .product-item_container
                 ul
-                    @include flex(row, space-between)
+                    @include flex(row)
                     flex-wrap: wrap
+                    gap: 8px
+                    @include responsive_sm
+                        gap: 16px
                     li
                         width: calc(50% - calc(16px / 2) * 0.5)
                         margin-bottom: 1rem
@@ -112,3 +115,21 @@
                                 @include font(0.875rem, 400, $height: 20px, $spacing: .2px)
                                 @include responsive_ul
                                     font-size: 1rem
+                .no-result
+                    padding: 1rem 0
+                    @include flex(column, center, center)
+                    h5
+                        color: white
+                        @include font(1.5rem, 400, $spacing: 1px, $align: center)
+                        @include responsive_sm
+                            font-size: 1.7rem
+                        @include responsive_ls
+                            font-size: 1.5rem
+                        @include responsive_l
+                            font-size: 2rem
+                    p
+                        color: rgb(255, 255, 255, 0.6)
+                        margin-top: 1rem
+                        @include font(0.875rem, $spacing: 1px, $align: center, $height: 25px)
+                        @include responsive_ls
+                            font-size: 1rem

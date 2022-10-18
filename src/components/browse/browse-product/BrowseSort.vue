@@ -87,9 +87,9 @@ window.addEventListener('resize', handleResize);
 handleResize()
 
 watch(width, (to)=>{
-    if(to>768){
-        document.getElementsByTagName('body')[0].classList.remove('active-body')
-        // store.commit("setFilterMenu", false)
+    if(to>=1024 && store.state.browse.filterMenuShow){
+      document.getElementsByTagName('body')[0].classList.remove('active-body')
+      store.commit("setFilterMenu", false)
     }
 })
 </script>

@@ -69,10 +69,16 @@ export default {
     },
     actions: {
         fetchBrowse ({commit}, data) {
+          console.log(data)
           commit("setBrowse", null);
             commerce.products.list(data)
             .then((products) => {
+              if(products.data){
                 commit("setBrowse", products);
+              }else{
+                products.data = []
+                commit("setBrowse", products);
+              }
             })
             .catch((error) => {
               console.log('There is an error fetching products', error);

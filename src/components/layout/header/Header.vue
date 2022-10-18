@@ -69,7 +69,7 @@
     handleResize()
 
     watch(width, (to)=>{
-        if(to>768){
+        if(to>768 && showMenu.value){
             document.getElementsByTagName('body')[0].classList.remove('active-body')
             showMenu.value = false
         }

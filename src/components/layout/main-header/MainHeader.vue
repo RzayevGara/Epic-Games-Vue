@@ -18,7 +18,7 @@
                 <div v-if="showMenu" class="bottom-menu">
                     <ul>
                         <li class="active-list"><router-link exactActiveClass="active-list" :to="{name: 'HomePage'}">Discovery</router-link></li>
-                        <li class="active-list"><router-link exactActiveClass="active-list" :to="{name: 'BrowsePage'}">Browse</router-link></li>
+                        <li class="active-list"><router-link exactActiveClass="active-list" :to="{name: 'BrowsePage', query: {sortBy: 'created_at', sortDir: 'desc', page: 1}}">Browse</router-link></li>
                         <li class="active-list"><router-link :to="{name: ''}">News</router-link></li>
                     </ul>
                 </div>
@@ -29,6 +29,7 @@
             </div>
         </div>
     </div>
+    <div v-if="showMenu" @click="closeMenu" class="bottom-menu_black"></div>
 </template>
 
 <script setup>
@@ -51,4 +52,8 @@
         activePath.value = to.path
         showMenu.value = false
     })
+
+    function closeMenu(){
+        showMenu.value = false
+    }
 </script>

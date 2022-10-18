@@ -22,7 +22,7 @@
     const router = useRouter()
     const route = useRoute()
     store.commit("setBrowse", null)
-    store.commit("setFilterRoute", route.query.query)
+    store.commit("setFilterRoute", route.query.query || [])
     store.dispatch('fetchGenreList')
     store.dispatch('fetchFilter')
 

@@ -23,7 +23,7 @@
 
 <script setup>
 import SwiperTitle from "../../components/home/swiper-title/SwiperTitle.vue";
-import SwiperCategory from "../../components/home//swiper-category/SwiperCategory.vue";
+import SwiperCategory from "../../components/home/swiper-category/SwiperCategory.vue";
 import SwiperCarousel from "../../components/home/swiper-carousel/SwiperCarousel.vue";
 import FreeGames from '../../components/home/free-games/FreeGames.vue'
 import Catalog from '../../components/home/home-catalog/Catalog.vue'
@@ -40,5 +40,4 @@ store.dispatch("fetchTopSellers");
 store.dispatch("fetchFreeGames")
 
 const productList = ref(store.getters.listProducts);
-// const productList = ref();
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div class="browse-product_item">
     <div class="product-item_container">
-        <ul v-if="items">
+        <ul v-if="items?.length>0">
             <li v-for="item in items" :key="item.id">
                 <router-link :to="`p/${item.permalink}`">
                     <img :src="item.image.url"/>
@@ -11,6 +11,10 @@
                 </router-link>
             </li>
         </ul>
+        <div class="no-result" v-else-if="items?.length===0">
+            <h5>No results found</h5>
+            <p>Unfortunately i could not find any results matching your search</p>
+        </div>
         <BrowseItemSkeleton v-else/>
     </div>
   </div>
@@ -18,5 +22,6 @@
 
 <script setup>
     import BrowseItemSkeleton from './browse-item-skeleton/BrowseItemSkeleton.vue'
-    defineProps({items: Object})
+    const props = defineProps({items: Object})
+    console.log(props.items)
 </script>
