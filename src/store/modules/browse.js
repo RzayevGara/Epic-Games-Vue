@@ -61,7 +61,9 @@ export default {
           if(Array.isArray(item)){
             state.filterQuery = JSON.parse(JSON.stringify(item))
           }else{
-            state.filterQuery.push(item)
+            if(!state.filterQuery.includes(item)){
+              state.filterQuery.push(item)
+            }
           }
         }
       }
