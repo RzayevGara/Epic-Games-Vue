@@ -13,7 +13,7 @@ header
         .left-nav
             @include flex($align: center)
             margin-left: 1rem
-            z-index: 6
+            z-index: 7
             a
                 display: flex
                 img
@@ -27,7 +27,7 @@ header
             top: 0
             right: -100%
             background-color: $headerBG
-            z-index: 5
+            z-index: 6
             transition: .3s
             ul
                 margin-top: 3.2rem
@@ -44,15 +44,28 @@ header
                     font-size: .6rem
                     letter-spacing: .06rem
                     height: 3.5rem
-                .sign-button
-                    color: #ccc
+                .user-button
                     background-color: transparent
-                    @include flex(row, center, center)
-                    gap: .8rem
                     box-shadow: 0 -4px 15px -4px rgb(0 0 0 / 50%)
                     border-top: 1px solid #8a8a8a2c
-                    svg
-                        width: 20px
+                    div
+                        height: 100%
+                        color: #ccc
+                        @include flex(row, center, center)
+                        gap: .8rem
+                        svg
+                            width: 20px
+                .sign-button
+                    background-color: transparent
+                    box-shadow: 0 -4px 15px -4px rgb(0 0 0 / 50%)
+                    border-top: 1px solid #8a8a8a2c
+                    a
+                        height: 100%
+                        color: #ccc
+                        @include flex(row, center, center)
+                        gap: .8rem
+                        svg
+                            width: 20px
 
                 .download-button
                     background-color: $blueButton
@@ -138,20 +151,33 @@ header
                     height: 100%
                     button
                         font-size: .6rem
-                        padding: 0 1.6rem
                         letter-spacing: .06rem
                         height: auto
-                    .sign-button
-                        color: #ccc
+                    .user-button
                         background-color: transparent
-                        @include flex(row, $align: center)
-                        gap: .8rem
                         box-shadow: none
                         border-top: none
-                        img
-                            width: 20px
+                        div
+                            padding: 0 1.6rem
+                            color: #ccc
+                            @include flex(row, $align: center)
+                            gap: .8rem
+                            svg
+                                width: 20px
+                    .sign-button
+                        background-color: transparent
+                        box-shadow: none
+                        border-top: none
+                        a
+                            padding: 0 1.6rem
+                            color: #ccc
+                            @include flex(row, $align: center)
+                            gap: .8rem
+                            svg
+                                width: 20px
 
                     .download-button
+                        padding: 0 1.6rem
                         background-color: $blueButton
                         color: white
             .burger

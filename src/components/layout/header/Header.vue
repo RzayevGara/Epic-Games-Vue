@@ -28,9 +28,18 @@
                     <li>unreal engine</li>
                 </ul>
                 <div class="buttons">
-                    <button class="sign-button">
-                        <UserIcon/>
-                        sign in</button>
+                    <button v-if="logStatus" class="user-button">
+                        <div>
+                            <UserIcon/>
+                            {{customer.firstname}}
+                        </div>
+                    </button>
+                    <button v-else class="sign-button">
+                        <router-link to="/login">
+                            <UserIcon/>
+                            sign in
+                        </router-link>
+                    </button>
                     <button class="download-button">download</button>
                 </div>
             </div>
@@ -46,9 +55,17 @@
 
 <script setup>
     import {ref, watch} from 'vue'
+    import {useStore} from 'vuex'
     import UserIcon from '../../../assets/image/svg/user.svg'
-
+    const store = useStore()
+    
     const showMenu = ref(false)
+    const logStatus = ref(store.getters.getLogStatus)
+    const customer = ref(store.getters.getCustomerInfo)
+
+    watch(store.state.auth, (to)=>{
+        logStatus.value = to.logStatus
+    })
 
     function burgerClick(){
         showMenu.value= !showMenu.value

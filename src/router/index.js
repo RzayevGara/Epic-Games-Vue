@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import store from "../store/index"
 
 const routes = [
   {
@@ -23,6 +24,16 @@ const routes = [
       },
     ],
   },
+  {
+    name: "SignUpPage",
+    path: "/sign-up",
+    component: () => import("../view/SignUp/SignUp.vue")
+  },
+  {
+    name: "LoginPage",
+    path: "/login",
+    component: () => import("../view/Login/Login.vue")
+  }
 ];
 
 const router = createRouter({
@@ -36,5 +47,12 @@ const router = createRouter({
     }
   },
 });
+
+router.beforeEach(async (to, from) => {
+  let isAuthenticated = store.getters.getLogStatus
+  if (isAuthenticated && to.name === 'LoginPage' || to.name==='SignUpPage') {
+    return '/'
+  }
+})
 
 export default router;

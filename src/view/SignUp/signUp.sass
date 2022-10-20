@@ -1,0 +1,78 @@
+#sign-up
+    background-color: $blackBG
+    height: 100vh
+    @include flex(row, center)
+    .sign-loading
+        position: fixed
+        @include size(100%, 100%)
+        background-color: $headerBG
+        top: 0
+        left: 0
+        z-index: 10
+        @include flex(row, center, center)
+    .sign-up-container
+        max-width: 470px
+        width: 100%
+        background-color: #202020
+        padding: 50px 15px 60px
+        @include flex(column, $align: center)
+        position: relative
+        @media (min-width: 470px)
+            margin: 2rem
+            padding: 50px 55px 60px
+        .sign-up-text
+            @include flex(column, $align: center)
+            img
+                width: 41px
+                margin-bottom: 30px
+            p
+                color: white
+                @include font(1.125rem, 500, $height: 1.56rem, $spacing: 0.5px, $align: center)
+        .sign-up-option
+            width: 100%
+            margin-top: 30px
+            max-width: 380px
+            li
+                cursor: pointer
+                background-color: rgb(43, 43, 43)
+                @include flex(row, $align: center)
+                color: white
+                border-radius: 4px
+                overflow: hidden
+                width: 100%
+                .logo
+                    min-width: 40px
+                    min-height: 40px
+                    flex-shrink: 0
+                    background-color: white
+                    div
+                        @include flex(row, center, center)
+                        height: 50px
+                        min-width: 85px
+                        max-width: 100%
+                        width: 100%
+                p
+                    padding: 10px
+                    flex: 1 1 auto
+                    @include font(.75rem, 500, $height: 1rem, $spacing: .5px)
+                    text-transform: uppercase
+        .error-message
+            margin-top: 15px
+            color: #bf1650
+            font-size: 14px
+            text-align: center
+            &:before
+                display: inline
+                content: "⚠ "
+            @include responsive_sm
+                font-size: 1rem
+        .login
+            position: absolute
+            bottom: 60px
+            @include flex(column, $align: center)
+            @include font(.875rem)
+            p
+                color: rgba(255, 255, 255, 0.72)
+            a
+                color: white
+                text-decoration: underline

@@ -9,6 +9,7 @@
 - Vue Router
 - Vuetify 3.0
 - Commerce JS
+- Firebase
 - Sass
 - Swiper JS
 - Lodash
