@@ -185,16 +185,19 @@
 
         .basket-icon
             display: flex
-            p
+            .cart-text
                 display: none
                 font-size: 0.875rem
                 color: #cccccc75
+                cursor: pointer
+                p
+                    padding-right: .6rem 
             @include responsive_ls
                 position: absolute
                 right: 0.625rem
-                svg
+                .cart-icon
                     display: none
-                p
+                .cart-text
                     display: block
 
 .bottom-menu_black

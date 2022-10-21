@@ -7,6 +7,8 @@
 
   const store = useStore();
 
+
+  store.dispatch("retrieveCart")
   store.dispatch("checkLogStatus")
   store.dispatch("getCustomer")
 

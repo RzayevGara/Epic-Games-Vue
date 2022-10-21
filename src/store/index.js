@@ -3,13 +3,15 @@ import category from './modules/category'
 import product from './modules/product'
 import browse from './modules/browse'
 import auth from './modules/auth'
+import cart from './modules/cart'
 
 export default createStore({
   modules: {
     category,
     product,
     browse,
-    auth
+    auth,
+    cart
   },
   // state(){
   //   return{

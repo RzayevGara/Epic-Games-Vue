@@ -45,8 +45,12 @@
                 </div>
             </div>
             <div class="basket-icon">
-                <BasketIcon/>
-                <p>Cart</p>
+                <v-badge :content="store.getters.getCartItemCount" color="white" class="cart-text" inline>
+                    <p>Cart</p>
+                </v-badge>
+                <v-badge :content="store.getters.getCartItemCount" color="white" class="cart-icon">
+                    <v-icon icon="mdi-cart-outline" color="grey"></v-icon>
+                </v-badge>
             </div>
         </div>
     </div>
