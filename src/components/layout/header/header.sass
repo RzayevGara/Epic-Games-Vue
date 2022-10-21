@@ -5,21 +5,55 @@ header
     display: flex
     align-items: center
     font-family: $openSans
-    overflow-y: hidden
     align-self: start
     nav
         @include flex(row, space-between, center)
         @include size(100%, 100%)
         .left-nav
             @include flex($align: center)
+            overflow-y: hidden
             margin-left: 1rem
             z-index: 7
+            @include responsive_sm
+                gap: 1.5rem
+                height: 100%
             a
                 display: flex
                 img
                     width: 27px
             ul
                 display: none
+                color: white
+                text-transform: uppercase
+                color: #ccc
+                font-size: .656rem
+                letter-spacing: .075rem
+                height: 100%
+                @include responsive_sm
+                    @include flex(row, $align: center)
+                li
+                    padding: 0 .656rem
+                    cursor: pointer
+                    transition: .4s
+                    position: relative
+                    @include flex(column, center, center)
+                    height: 100%
+                    .border-list
+                        transition: .3s
+                        position: absolute
+                        @include size(100%, 6px)
+                        background-color: $blueButton
+                        bottom: -8px
+                    &:hover .border-list
+                        bottom: 0
+                        transition: .3s
+                    &:hover
+                        color: white
+                .active-list
+                    color: white
+                    .border-list
+                        @extend .border-list
+                        bottom: 0
         .right-nav
             @include flex(column, space-between)
             position: fixed
@@ -29,47 +63,125 @@ header
             background-color: $headerBG
             z-index: 6
             transition: .3s
+            @include responsive_sm
+                gap: 1rem
+                height: 100%
+                position: static
+                @include size(auto, 100%)
             ul
                 margin-top: 3.2rem
                 color: #e7e7e7
                 font-size: .85rem
                 text-transform: uppercase
                 letter-spacing: .075rem
+                @include responsive_sm
+                    display: none
+
                 li
                     padding: .45rem 1.75rem
                     border-bottom: 1px solid #8a8a8a2c
             .buttons
                 @include flex(column)
+                @include responsive_sm
+                    @include flex(row)
+                    height: 100%
+                    position: relative
                 button
                     font-size: .6rem
                     letter-spacing: .06rem
                     height: 3.5rem
+                    @include responsive_sm
+                        height: auto
                 .user-button
                     background-color: transparent
                     box-shadow: 0 -4px 15px -4px rgb(0 0 0 / 50%)
                     border-top: 1px solid #8a8a8a2c
-                    div
+                    @include responsive_sm
+                        background-color: transparent
+                        box-shadow: none
+                        border-top: none
+                        position: relative
+                        &:hover .profile-hover
+                            display: block
+
+                                
+                    .user-button-container
                         height: 100%
                         color: #ccc
                         @include flex(row, center, center)
                         gap: .8rem
+                        @include responsive_sm
+                            padding: 0 2rem
                         svg
                             width: 20px
+                    .profile-hover
+                        position: absolute
+                        background-color: $headerBG
+                        z-index: 1
+                        left: 0
+                        top: 50px
+                        width: 100%
+                        padding: .6rem 0
+                        display: none
+                        border-radius: 0 0 4px 4px
+                        ul
+                            display: block
+                            margin: 0
+                            li
+                                border: none
+                                font-size: 10px
+                                opacity: .6
+                                padding: .6rem 0
+                                &:hover
+                                    opacity: 1
                 .sign-button
                     background-color: transparent
                     box-shadow: 0 -4px 15px -4px rgb(0 0 0 / 50%)
                     border-top: 1px solid #8a8a8a2c
+                    @include responsive_sm
+                        background-color: transparent
+                        box-shadow: none
+                        border-top: none
                     a
                         height: 100%
                         color: #ccc
                         @include flex(row, center, center)
                         gap: .8rem
+                        @include responsive_sm
+                            padding: 0 1.6rem
                         svg
                             width: 20px
 
                 .download-button
                     background-color: $blueButton
                     color: white
+                    @include responsive_sm
+                        padding: 0 1.6rem
+                .profile
+                    position: absolute
+                    background-color: $headerBG
+                    z-index: 1
+                    right: -100%
+                    top: 0
+                    @include size(100%, 100%)
+                    transition: .3s
+                    ul
+                        font-size: .65rem
+                        .profile-title
+                            background-color: #1d1d1d
+                            color: #8e8e8e
+                            padding: 0.6em 1em
+                            font-size: .8rem
+                            @include flex(row, center, center)
+                            svg
+                                transform: rotate(-90deg)
+                                position: absolute
+                                left: 10px
+                                width: 1rem
+                .profile-active
+                    right: 0
+                    transition: .3s
+
         .right-nav-active
             right: 0
             transition: .3s
@@ -80,6 +192,8 @@ header
             padding: 1rem .6rem
             z-index: 6
             transition: .3s
+            @include responsive_sm
+                display: none
             .line
                 @include size(100%, 2px)
                 background-color: white
@@ -101,84 +215,3 @@ header
                     transition: .3s
                     position: absolute
                     transform: rotate(-45deg)
-                    
-        @include responsive_sm
-            .left-nav
-                gap: 1.5rem
-                height: 100%
-                ul
-                    @include flex(row, $align: center)
-                    color: white
-                    text-transform: uppercase
-                    color: #ccc
-                    font-size: .656rem
-                    letter-spacing: .075rem
-                    height: 100%
-                    li
-                        padding: 0 .656rem
-                        cursor: pointer
-                        transition: .4s
-                        position: relative
-                        @include flex(column, center, center)
-                        height: 100%
-                        .border-list
-                            transition: .3s
-                            position: absolute
-                            @include size(100%, 6px)
-                            background-color: $blueButton
-                            bottom: -8px
-                        &:hover .border-list
-                            bottom: 0
-                            transition: .3s
-                        &:hover
-                            color: white
-                    .active-list
-                        color: white
-                        .border-list
-                            @extend .border-list
-                            bottom: 0
-                            
-                        
-            .right-nav
-                gap: 1rem
-                height: 100%
-                position: static
-                @include size(auto, 100%)
-                ul
-                    display: none
-                .buttons
-                    @include flex(row)
-                    height: 100%
-                    button
-                        font-size: .6rem
-                        letter-spacing: .06rem
-                        height: auto
-                    .user-button
-                        background-color: transparent
-                        box-shadow: none
-                        border-top: none
-                        div
-                            padding: 0 1.6rem
-                            color: #ccc
-                            @include flex(row, $align: center)
-                            gap: .8rem
-                            svg
-                                width: 20px
-                    .sign-button
-                        background-color: transparent
-                        box-shadow: none
-                        border-top: none
-                        a
-                            padding: 0 1.6rem
-                            color: #ccc
-                            @include flex(row, $align: center)
-                            gap: .8rem
-                            svg
-                                width: 20px
-
-                    .download-button
-                        padding: 0 1.6rem
-                        background-color: $blueButton
-                        color: white
-            .burger
-                display: none

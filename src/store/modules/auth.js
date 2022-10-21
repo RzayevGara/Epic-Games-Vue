@@ -157,6 +157,9 @@ export default {
                 console.log(error.message)
             })
         },
+        logOut(){
+            commerce.customer.logout()
+        }
     },
     getters: {
         getLoading(state){
