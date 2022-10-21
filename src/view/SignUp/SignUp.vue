@@ -1,51 +1,30 @@
 <template>
-    <main id="sign-up">
-        <div v-if="store.getters.getLoading" class="sign-loading">
-            <v-progress-circular color="white" indeterminate :size="78" :width="6"></v-progress-circular>
-        </div>
-        <div class="sign-up-container">
-            <div class="sign-up-text">
-                <img src="../../assets/image/svg/logo.png" alt="logo"/>
-                <p>Choose how you would like to sign up</p>
-            </div>
-            <ul class="sign-up-option">
-                <li @click="signinWithGoogle">
-                    <div class="logo">
-                        <div>
-                            <GoogleIcon/>
-                        </div>
-                    </div>
-                    <p>Sign up with Google</p>
-                </li>
-            </ul>
-            <p v-if="store.getters.getErrorMessage" class="error-message">{{store.getters.getErrorMessage}}</p>
-            <div class="login">
-                <p>Have an Epic Games Account?</p>
-                <router-link to="/login"><span>Login</span></router-link>
-            </div>
-        </div>
-    </main>
+    <Auth :authData="signupData" :errorMsg="errorMsg"/>
 </template>
 
 <script setup>
     import GoogleIcon from '../../assets/image/svg/google.svg'
+    import Auth from '../../components/shared/auth/Auth.vue'
     import {useStore} from 'vuex'
-    import {useRouter} from 'vue-router'
     import {ref, watch} from 'vue'
     const store = useStore()
-    const router= useRouter()
-    
-    const logStatus = ref(store.getters.getStatus)
-    // const errorMessage = ref(store.getters.getErrorMessage)
-
-    watch(store.state.auth, (to)=>{
-        logStatus.value = to.logStatus
-        if(logStatus.value){
-            router.push({ path: '/' })
-        }
-    })
 
     function signinWithGoogle(){
         store.dispatch("signUp")    
     }
+
+    const errorMsg = ref(store.getters.getErrorMessageSign)
+
+    watch(store.state.auth, (to)=>{
+        errorMsg.value = to.errorMessageSign
+    })
+
+    const signupData = {
+        optionText: "Choose how you would like to sign up.",
+        loginWithGoogle: signinWithGoogle,
+        authOption: "Sign up",
+        accountText: "Have an Epic Games Account?",
+        link: "login"
+    }
+
 </script>

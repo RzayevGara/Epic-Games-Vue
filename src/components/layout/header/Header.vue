@@ -34,7 +34,7 @@
                             {{store.getters.getCustomerInfo?.firstname}}
                         </div>
                     </button>
-                    <button v-else class="sign-button">
+                    <button v-else class="sign-button" @click="removeActiveBody">
                         <router-link to="/login">
                             <UserIcon/>
                             sign in
@@ -68,6 +68,10 @@
         }else{
             document.getElementsByTagName('body')[0].classList.remove('active-body')
         }
+    }
+
+    function removeActiveBody(){
+        document.getElementsByTagName('body')[0].classList.remove('active-body')
     }
     const width = ref()
 

@@ -54,6 +54,10 @@ router.beforeEach(async (to, from) => {
   if (isAuthenticated && authRequiredRoutes.indexOf(to.name)>-1) {
     return '/'
   }
+  if(authRequiredRoutes.indexOf(from.name)>-1){
+    store.commit("setErrorMessageSign", false)
+    store.commit("setErrorMessageLogin", false)
+  }
 })
 
 export default router;

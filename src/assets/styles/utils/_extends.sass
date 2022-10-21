@@ -8,3 +8,14 @@
     padding: 10px 20px
     @include responsive_ul
         font-size: 0.688rem
+
+.error-message
+        margin-top: 15px
+        color: #bf1650
+        font-size: 14px
+        text-align: center
+        &:before
+            display: inline
+            content: "⚠ "
+        @include responsive_sm
+            font-size: 1rem

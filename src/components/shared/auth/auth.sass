@@ -1,8 +1,16 @@
-#login
+#auth
     background-color: $blackBG
     height: 100vh
     @include flex(row, center)
-    .login-container
+    .auth-loading
+        position: fixed
+        @include size(100%, 100%)
+        background-color: $headerBG
+        top: 0
+        left: 0
+        z-index: 10
+        @include flex(row, center, center)
+    .auth-container
         width: 100%
         max-width: 470px
         background-color: #202020
@@ -12,15 +20,17 @@
         @media (min-width: 470px)
             margin: 2rem
             padding: 50px 55px 60px
-        .login-text
+        .auth-text
             @include flex(column, $align: center)
-            img
-                width: 41px
-                margin-bottom: 30px
+            a
+                display: flex
+                img
+                    width: 41px
+                    margin-bottom: 30px
             p
                 color: white
                 @include font(1.125rem, 500, $height: 1.56rem, $spacing: 0.5px, $align: center)
-        .login-option
+        .auth-option
             width: 100%
             margin-top: 30px
             max-width: 380px
@@ -48,7 +58,9 @@
                     flex: 1 1 auto
                     @include font(.75rem, 500, $height: 1rem, $spacing: .5px)
                     text-transform: uppercase
-        .sign-up
+        .error-msg
+            @extend .error-message
+        .sign-login
             position: absolute
             bottom: 60px
             @include flex(column, $align: center)
@@ -58,3 +70,5 @@
             a
                 color: white
                 text-decoration: underline
+                span
+                    text-transform: capitalize

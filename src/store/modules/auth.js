@@ -14,7 +14,8 @@ const commerce = (typeof import.meta.env.VITE_CHEC_PUBLIC_KEY !== 'undefined')
 export default {
     state:{
         isLoading: false,
-        errorMessage: null,
+        errorMessageSign: null,
+        errorMessageLogin: null,
         logStatus: null,
         customerInfo: null
 
@@ -26,11 +27,15 @@ export default {
         setLogStatus(state, item) {
           state.logStatus = item
           if(item){
-            state.errorMessage = null
+            state.errorMessageSign = null
+            state.errorMessageLogin = null
           }
         },
-        setErrorMessage(state, item) {
-          state.errorMessage = item
+        setErrorMessageSign(state, item) {
+          state.errorMessageSign = item
+        },
+        setErrorMessageLogin(state, item) {
+          state.errorMessageLogin = item
         },
         setCustomerInfo(state, item) {
             state.customerInfo = item
@@ -55,26 +60,41 @@ export default {
         },
         login({commit}){
             signInWithPopup(auth, provider)
-            .then((result)=>{
-                console.log(result)
-                // const querySnapshot = await getDocs(collection(db, "users"));
-                // // querySnapshot.forEach((doc) => {
-                // // console.log(`${doc.id} => ${doc.data()}`);
-                // // });
-                // console.log(querySnapshot)
-                // let test =  db.collection('users').document(userId);
-                // console.log(test)
-                const docSnap =  getDoc(doc(db, "user", result.user.uid))
-                .then((data)=>{
-                    console.log(data)
-
-                })
-                // if (docSnap.exists()) {
-                //     console.log("Document data:", docSnap.data());
-                //   } else {
-                //     // doc.data() will be undefined in this case
-                //     console.log("No such document!");
-                //   }
+            .then(async(result)=>{
+                commit("setLoading", true)
+                const ref = doc(db, "users", result.user.uid)
+                const userDoc = await getDoc(ref);
+                if (userDoc.exists()) {
+                    const {customerID} = userDoc.data()
+                    const url = new URL(`https://api.chec.io/v1/customers/${customerID}/issue-token`)
+                    const checAPIKey = import.meta.env.VITE_CHEC_SECRET_KEY
+                    let headers = {
+                        "X-Authorization": checAPIKey,
+                        "Content-Type": "application/json",
+                        "Accept": "application/json",
+                    };
+                    fetch(url, {
+                        method: "POST",
+                        headers: headers,
+                    })
+                    .then(res=>{
+                        return res.json()
+                    })
+                    .then(data=>{
+                        commit("setLogStatus", true)
+                        commit("setLoading", false)
+                        localStorage.setItem("commercejs_customer_id", data.customer_id);
+                        localStorage.setItem("commercejs_customer_token", data.jwt);
+                        commerce.customer.about()
+                        .then((customer) => {
+                            commit("setCustomerInfo", customer)
+                        })
+                    })
+                  } else {
+                    commit("setLogStatus", false)
+                    commit("setLoading", false)
+                    commit("setErrorMessageLogin", "User not found")
+                  }
             })
 
         },
@@ -117,8 +137,8 @@ export default {
                         return res.json()
                     })
                     .then(data=>{
-                        commit("setLoading", false)
                         commit("setLogStatus", true)
+                        commit("setLoading", false)
                         localStorage.setItem("commercejs_customer_id", data.customer_id);
                         localStorage.setItem("commercejs_customer_token", data.jwt);
                         commerce.customer.about()
@@ -130,7 +150,7 @@ export default {
                 .catch(()=>{
                     commit("setLogStatus", false)
                     commit("setLoading", false)
-                    commit("setErrorMessage", "The email address has already been taken.")
+                    commit("setErrorMessageSign", "The email address has already been taken.")
                 })
             })
             .catch((error)=>{
@@ -145,8 +165,11 @@ export default {
         getLogStatus(state){
             return state.logStatus
         },
-        getErrorMessage(state){
-            return state.errorMessage
+        getErrorMessageSign(state){
+            return state.errorMessageSign
+        },
+        getErrorMessageLogin(state){
+            return state.errorMessageLogin
         },
         getCustomerInfo(state){
             return state.customerInfo
