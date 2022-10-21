@@ -28,10 +28,10 @@
                     <li>unreal engine</li>
                 </ul>
                 <div class="buttons">
-                    <button v-if="logStatus" class="user-button">
+                    <button v-if="store.getters.getLogStatus" class="user-button">
                         <div>
                             <UserIcon/>
-                            {{customer.firstname}}
+                            {{store.getters.getCustomerInfo?.firstname}}
                         </div>
                     </button>
                     <button v-else class="sign-button">
@@ -60,12 +60,6 @@
     const store = useStore()
     
     const showMenu = ref(false)
-    const logStatus = ref(store.getters.getLogStatus)
-    const customer = ref(store.getters.getCustomerInfo)
-
-    watch(store.state.auth, (to)=>{
-        logStatus.value = to.logStatus
-    })
 
     function burgerClick(){
         showMenu.value= !showMenu.value

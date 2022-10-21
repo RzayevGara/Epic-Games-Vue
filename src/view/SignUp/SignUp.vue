@@ -1,7 +1,8 @@
 <template>
     <main id="sign-up">
-        <div v-if="isLoading" class="sign-loading">
-            <v-progress-circular color="white" indeterminate :size="78" :width="6"></v-progress-circular></div>
+        <div v-if="store.getters.getLoading" class="sign-loading">
+            <v-progress-circular color="white" indeterminate :size="78" :width="6"></v-progress-circular>
+        </div>
         <div class="sign-up-container">
             <div class="sign-up-text">
                 <img src="../../assets/image/svg/logo.png" alt="logo"/>
@@ -17,7 +18,7 @@
                     <p>Sign up with Google</p>
                 </li>
             </ul>
-            <p class="error-message">{{errorMessage}}</p>
+            <p v-if="store.getters.getErrorMessage" class="error-message">{{store.getters.getErrorMessage}}</p>
             <div class="login">
                 <p>Have an Epic Games Account?</p>
                 <router-link to="/login"><span>Login</span></router-link>
@@ -34,19 +35,15 @@
     const store = useStore()
     const router= useRouter()
     
-    const isLoading = ref(store.getters.getLoading)
     const logStatus = ref(store.getters.getStatus)
-    const errorMessage = ref(store.getters.getErrorMessage)
+    // const errorMessage = ref(store.getters.getErrorMessage)
 
     watch(store.state.auth, (to)=>{
-        isLoading.value = to.isLoading
         logStatus.value = to.logStatus
         if(logStatus.value){
             router.push({ path: '/' })
         }
     })
-
-
 
     function signinWithGoogle(){
         store.dispatch("signUp")    

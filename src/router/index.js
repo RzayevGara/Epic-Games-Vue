@@ -49,8 +49,9 @@ const router = createRouter({
 });
 
 router.beforeEach(async (to, from) => {
-  let isAuthenticated = store.getters.getLogStatus
-  if (isAuthenticated && to.name === 'LoginPage' || to.name==='SignUpPage') {
+  const isAuthenticated = store.getters.getLogStatus
+  const authRequiredRoutes = ['LoginPage', 'SignUpPage']
+  if (isAuthenticated && authRequiredRoutes.indexOf(to.name)>-1) {
     return '/'
   }
 })

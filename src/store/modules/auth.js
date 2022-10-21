@@ -1,6 +1,6 @@
 import Commerce from '@chec/commerce.js';
 import {auth, db} from '../../firebase'
-import { collection, addDoc, doc, setDoc } from "firebase/firestore"; 
+import { collection, getDoc, getDocs,  doc, setDoc } from "firebase/firestore"; 
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth'
 import axios from 'axios'
 
@@ -39,16 +39,48 @@ export default {
     },
     actions: {
         getCustomer({commit}){
-            commerce.customer.about()
-            .then((customer) => commit("setCustomerInfo", customer))
+            let localData = localStorage.getItem("commercejs_customer_id")
+            if(localData){
+                commerce.customer.about()
+                .then((customer) => {
+                    commit("setCustomerInfo", customer)
+                })
+                .catch(_=>{
+                    commit("setCustomerInfo", null)
+                })
+            }
         },
         checkLogStatus({commit}){ 
             commit("setLogStatus", commerce.customer.isLoggedIn())
         },
+        login({commit}){
+            signInWithPopup(auth, provider)
+            .then((result)=>{
+                console.log(result)
+                // const querySnapshot = await getDocs(collection(db, "users"));
+                // // querySnapshot.forEach((doc) => {
+                // // console.log(`${doc.id} => ${doc.data()}`);
+                // // });
+                // console.log(querySnapshot)
+                // let test =  db.collection('users').document(userId);
+                // console.log(test)
+                const docSnap =  getDoc(doc(db, "user", result.user.uid))
+                .then((data)=>{
+                    console.log(data)
+
+                })
+                // if (docSnap.exists()) {
+                //     console.log("Document data:", docSnap.data());
+                //   } else {
+                //     // doc.data() will be undefined in this case
+                //     console.log("No such document!");
+                //   }
+            })
+
+        },
         signUp ({commit}) {
             signInWithPopup(auth, provider)
             .then((result)=>{
-                console.log(result.user)
                 commit("setLoading", true)
                 const url = new URL("https://api.chec.io/v1/customers")
 
@@ -68,7 +100,6 @@ export default {
                 }
                 axios.post(url, body, {headers: headers})
                 .then((response)=>{
-                    console.log(response)
                     setDoc(doc(db,'users', result.user.uid), {
                         customerID: `${response.data.id}`
                     })
@@ -86,10 +117,14 @@ export default {
                         return res.json()
                     })
                     .then(data=>{
-                        commit("setLogStatus", true)
                         commit("setLoading", false)
+                        commit("setLogStatus", true)
                         localStorage.setItem("commercejs_customer_id", data.customer_id);
                         localStorage.setItem("commercejs_customer_token", data.jwt);
+                        commerce.customer.about()
+                        .then((customer) => {
+                            commit("setCustomerInfo", customer)
+                        })
                     })
                 })
                 .catch(()=>{
