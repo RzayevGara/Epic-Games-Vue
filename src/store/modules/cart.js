@@ -7,7 +7,8 @@ const commerce = (typeof import.meta.env.VITE_CHEC_PUBLIC_KEY !== 'undefined')
 export default {
     state:{
        cartItemCount: 0,
-       addCartStatus: false
+       addCartStatus: false,
+       cartItems: []
     },
     mutations: {
         setCartCount(state, item) {
@@ -16,20 +17,32 @@ export default {
         setAddCartStatus(state, item) {
           state.addCartStatus = item
         },
+        setCartItems(state, item) {
+          state.cartItems = item
+        }
        
     },
     actions: {
-        addToCart({commit}, id) {
+        addToCart({commit, state}, id) {
             commit("setAddCartStatus", true)
-            commerce.cart.add(id).
-            then((response) =>{
-                commit("setCartCount", response.total_unique_items)
-                commit("setAddCartStatus", false)
-            });
+            let checkItems = state.cartItems.some(item=>item.product_id===id)
+            if(!checkItems){
+              commerce.cart.add(id).
+              then((response) =>{
+                  commit("setCartCount", response.total_unique_items)
+                  commit("setCartItems", response.line_items)
+                  commit("setAddCartStatus", false)
+              });
+            }else{
+              commit("setAddCartStatus", false)
+            }
         },
         retrieveCart({commit}){
             commerce.cart.retrieve()
-            .then((cart) =>commit("setCartCount", cart.total_unique_items));
+            .then((cart) =>{
+              commit("setCartCount", cart.total_unique_items)
+              commit("setCartItems", cart.line_items)
+            });
         }
     },
     getters: {

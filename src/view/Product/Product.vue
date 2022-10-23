@@ -39,6 +39,8 @@
 
     watch(route, (to)=>{
         activePath.value = to.params.productID
-        store.dispatch('fetchProduct', activePath.value)
+        if(activePath.value){
+            store.dispatch('fetchProduct', activePath.value)
+        }
     }, {deep: true})
 </script>

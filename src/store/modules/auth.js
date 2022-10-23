@@ -43,7 +43,7 @@ export default {
 
     },
     actions: {
-        getCustomer({commit}){
+        getCustomer({commit, dispatch}){
             let localData = localStorage.getItem("commercejs_customer_id")
             if(localData){
                 commerce.customer.about()
@@ -52,6 +52,8 @@ export default {
                 })
                 .catch(_=>{
                     commit("setCustomerInfo", null)
+                    dispatch("logOut")
+                    dispatch("checkLogStatus")
                 })
             }
         },
