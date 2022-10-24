@@ -1,0 +1,183 @@
+@import '../../components/cart/skeleton/cartSkeleton.sass'
+@import '../../components/cart/price-box-skeleton/priceBoxSkeleton.sass'
+
+#cart
+    padding-bottom: 5.5rem
+    margin-top: 1rem
+    .cart-container
+        width: 90%
+        max-width: 100rem
+        margin-left: auto
+        margin-right: auto
+        @include responsive_ls
+            width: 75%
+        .cart-title
+            margin-bottom: 3.125rem
+            color: white
+            @include font(1.875rem, 400)
+            @include responsive_l
+                font-size: 2.5rem
+            @include responsive_ul
+                font-size: 3.125rem
+        .cart-detail
+            @include flex(column)
+            @include responsive_ls
+                @include flex(row)
+            .cart-items
+                flex-grow: 1
+                ul
+                    @include flex(column)
+                    gap: 15px
+                    color: white
+                    li
+                        background-color: rgb(32, 32, 32)
+                        border-radius: 4px
+                        .list-container
+                            padding: 20px
+                            @include flex(column)
+                            gap: 20px
+                            @include responsive_sm
+                                @include flex(row, space-between)
+                            .item-detail
+                                @include flex(row)
+                                gap: 20px
+                                .img-click
+                                    display: flex
+                                    img
+                                        @include size(3.75rem, 5rem)
+                                        border-radius: 4px
+                                        @include responsive_sm
+                                            @include size(5.188rem, 6.875rem)
+                                        @include responsive_lm
+                                            @include size(8rem, 10.625rem)
+                                        &:hover
+                                            filter: brightness(1.1)
+                                .item-info
+                                    .base-game
+                                        background-color: rgba(255, 255, 255, 0.1)
+                                        border-radius: 4px
+                                        display: inline-block
+                                        padding: 5px 10px
+                                        text-transform: uppercase
+                                        @include font(9px, 500, $spacing: 1px)
+                                        margin: 5px 0
+                                        @include responsive_ul
+                                            font-size: 11px
+                                    .item-name
+                                        @include font(1.125rem, 400)
+                                        @include responsive_ul
+                                            font-size: 1.375rem
+
+                            .item-price
+                                font-size: 0.875rem
+                                @include responsive_ul
+                                    font-size: 1rem
+                                p
+                                    @include responsive_sm
+                                        text-align: right
+                                .remove-item
+                                    margin-top: .5rem
+                                    color: rgba(245, 245, 245)
+                                    opacity: .6
+                                    cursor: pointer
+                                    text-transform: capitalize
+                                    position: relative
+                                    @include flex(row, flex-start, center)
+                                    @include size(70px, 25px)
+                                    @include responsive_sm
+                                        justify-content: flex-end
+                                    &:hover
+                                        opacity: 1
+                                    span
+                                        border-bottom: 1px solid rgba(245, 245, 245, 0.6)
+                                        font-size: 0.875rem
+                                        @include responsive_ul
+                                            font-size: 1rem
+                                    .delete-item-loading
+                                        position: absolute
+                                        display: flex
+                                .remove-item-active
+                                    border: 1px solid white
+                                    border-radius: 4px
+                                    justify-content: center
+                .empty-cart
+                    @include flex(column, $align: center)
+                    color: white
+                    svg
+                        margin-bottom: 30px
+                        margin-bottom: 30px
+                    .empty-text
+                        @include font(1.625rem, 300, $spacing: -.3px)
+                        margin-bottom: 12px
+                        @include responsive_ls
+                            font-size: 1.5rem
+                        @include responsive_l
+                            font-size: 1.875rem
+                        @include responsive_l
+                            font-size: 2rem
+
+                    .go-home
+                        color: white
+                        p
+                            opacity: .6
+                            font-size: 0.875rem
+                            border-bottom: 1px solid rgba(255, 255, 255, 0.1)
+                            cursor: pointer
+                            &:hover
+                                opacity: 1
+                            @include responsive_l
+                                font-size: 1rem
+
+            .cart-price
+                color: white
+                margin-top: 2rem
+                @include responsive_ls
+                    width: 16rem
+                    margin-left: 2rem
+                    margin-top: 0
+                @include responsive_lm
+                    width: 18.5rem
+                    margin-left: 2.25rem
+                h4
+                    @include font(1.625rem, 300)
+                    margin-bottom: 20px
+                    @include font(1.5rem)
+                    @include responsive_l
+                        font-size: 1.875rem
+                    @include responsive_ul                    
+                        font-size: 2rem
+                .price-detail
+                    p
+                        @include flex(row, space-between, center)
+                        margin-top: 1rem
+                        font-size: 14px
+                        @include responsive_ul
+                            font-size: 1rem
+                    .calculate
+                        border-bottom: 1px solid rgba(245, 245, 245,0.1)
+                        padding-bottom: 1rem
+                    .total-price
+                        p
+                            font-weight: 600
+                        .checkout-btn
+                            background-color: rgb(0, 116, 228)
+                            color: white
+                            @include font(14px, 500)
+                            @include size(100%, 50px)
+                            border-radius: 4px
+                            margin-top: 20px
+                            letter-spacing: 1px
+                            filter: brightness(1)
+                            transition: .4s
+                            &:hover
+                                filter: brightness(1.1)
+                                transition: .4s
+                            @include responsive_ls
+                                height: 40px
+                                font-size: 10px
+                            @include responsive_lm
+                                height: 50px
+                            @include responsive_l
+                                font-size: 12px
+                            @include responsive_ul
+                                font-size: 14px

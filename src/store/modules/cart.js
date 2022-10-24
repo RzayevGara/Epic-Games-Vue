@@ -8,7 +8,7 @@ export default {
     state:{
        cartItemCount: 0,
        addCartStatus: false,
-       cartItems: []
+       cartDetail: null,
     },
     mutations: {
         setCartCount(state, item) {
@@ -17,20 +17,23 @@ export default {
         setAddCartStatus(state, item) {
           state.addCartStatus = item
         },
-        setCartItems(state, item) {
-          state.cartItems = item
+        setCartDetail(state, item) {
+          state.cartDetail = item
+        },
+        setDeleteItemStatus(state, item) {
+          state.deleteItemStatus = item
         }
        
     },
     actions: {
         addToCart({commit, state}, id) {
             commit("setAddCartStatus", true)
-            let checkItems = state.cartItems.some(item=>item.product_id===id)
+            let checkItems = state.cartDetail?.line_items.some(item=>item.product_id===id)
             if(!checkItems){
               commerce.cart.add(id).
               then((response) =>{
                   commit("setCartCount", response.total_unique_items)
-                  commit("setCartItems", response.line_items)
+                  commit("setCartDetail", response)
                   commit("setAddCartStatus", false)
               });
             }else{
@@ -41,9 +44,9 @@ export default {
             commerce.cart.retrieve()
             .then((cart) =>{
               commit("setCartCount", cart.total_unique_items)
-              commit("setCartItems", cart.line_items)
+              commit("setCartDetail", cart)
             });
-        }
+          },
     },
     getters: {
       getCartItemCount(state){
@@ -51,6 +54,9 @@ export default {
       },
       getAddCartStatus(state){
         return state.addCartStatus
+      },
+      getCartDetail(state){
+        return state.cartDetail
       },
     }
 }

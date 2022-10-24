@@ -1,0 +1,39 @@
+.skeleton-item-detail
+    @include flex(row)
+    gap: 20px
+    width: 100%
+    img
+        animation: pulse-bg-white 1s infinite
+        @include size(3.75rem, 5rem)
+        border-radius: 4px
+        @include responsive_sm
+            @include size(5.188rem, 6.875rem)
+        @include responsive_lm
+            @include size(8rem, 10.625rem)
+    p
+        @include size(4rem, 1.4rem)
+        animation: pulse-bg-white 1s infinite
+        border-radius: 4px
+        margin-bottom: 1rem
+    h2
+        @include size(8rem, 1.4rem)
+        animation: pulse-bg-white 1s infinite
+        border-radius: 4px
+.skeleton-item-price
+    .skeleton-price
+        margin-bottom: 1rem
+        @include size(4rem, 1.4rem)
+        animation: pulse-bg-white 1s infinite
+        border-radius: 4px
+    .skeleton-remove-item
+        @include size(4rem, 1.4rem)
+        animation: pulse-bg-white 1s infinite
+        border-radius: 4px
+
+@keyframes pulse-bg-white
+    0%
+        background-color: #5c5c5c
+    50%
+        background-color: #484848
+    100%
+        background-color: #5c5c5c

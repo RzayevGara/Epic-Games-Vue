@@ -78,12 +78,19 @@
                     margin-top: .7rem
                     position: relative
                     @include flex(row, center, center)
+                    a
+                        color: inherit
+                        @include size(100%, 100%)
+                        @include flex(row, center, center)
+                    span
+                        @include size(100%, 100%)
+                        @include flex(row, center, center)
                     .add-card-loading
                         position: absolute
             .product-detail
                 width: 100%
                 margin-top: .7rem
-                p
+                .product-detail_container
                     @include flex(row, space-between, center)
                     color: rgba(245, 245, 245, 0.6)
                     border-bottom: 1px solid rgba(245, 245, 245, 0.1)

@@ -1,0 +1,20 @@
+.cart-price-skeleton
+    margin-top: 2rem
+    @include responsive_ls
+        width: 16rem
+        margin-left: 2rem
+        margin-top: 0
+    @include responsive_lm
+        width: 18.5rem
+        margin-left: 2.25rem
+    p
+        @include flex(row, space-between, center)
+        margin-bottom: 1rem
+        span
+            @include size(30%, 1.4rem)
+            animation: pulse-bg-white 1s infinite
+            border-radius: 4px
+    .skeleton-button
+        @include size(100%, 50px)
+        animation: pulse-bg-white 1s infinite
+        border-radius: 4px

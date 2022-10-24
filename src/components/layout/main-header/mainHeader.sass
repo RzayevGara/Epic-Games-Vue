@@ -129,6 +129,10 @@
                             opacity: .5
                             font-size: 0.875rem
                             letter-spacing: 0.2px
+                            transition: .3s
+                            &:hover
+                                transition: .3s
+                                opacity: 1
                     .active-list
                         opacity: 1
             button
@@ -192,6 +196,8 @@
                 cursor: pointer
                 p
                     padding-right: .6rem 
+            .active-list
+                color: white
             @include responsive_ls
                 position: absolute
                 right: 0.625rem

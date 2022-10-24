@@ -45,12 +45,16 @@
                 </div>
             </div>
             <div class="basket-icon">
-                <v-badge :content="store.getters.getCartItemCount" color="white" class="cart-text" inline>
-                    <p>Cart</p>
-                </v-badge>
-                <v-badge :content="store.getters.getCartItemCount" color="white" class="cart-icon">
-                    <v-icon icon="mdi-cart-outline" color="grey"></v-icon>
-                </v-badge>
+                <router-link to="/cart"  class="cart-text" exactActiveClass="active-list">
+                    <v-badge :content="store.getters.getCartItemCount" color="white" inline>
+                        <p>Cart</p>
+                    </v-badge>
+                </router-link>
+                <router-link to="/cart" class="cart-icon">
+                    <v-badge :content="store.getters.getCartItemCount" color="white" >
+                        <v-icon icon="mdi-cart-outline" color="grey"></v-icon>
+                    </v-badge>
+                </router-link>
             </div>
         </div>
     </div>
