@@ -93,7 +93,9 @@
 
     function searchClick(){
         showSearchBar.value = !showSearchBar.value
-        inputDOM.value.focus()
+        setTimeout(function () { 
+            inputDOM.value.focus()
+        }, 0);
     }
     
     function closeSearchBar(){
