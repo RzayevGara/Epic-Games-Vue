@@ -4,9 +4,9 @@
         <div class="main-header-container">
             <div class="main-header_search">
                 <SearchIcon @click="searchClick" class="mobile-search"/>
-                <form v-if="showSearchBar || width>=1024" class="search-box">
+                <form v-show="showSearchBar || width>=1024" class="search-box">
                     <SearchIcon/>
-                    <input v-model="inputValue" type="text" placeholder="Search store" @focus="togglePicker">
+                    <input v-model="inputValue" type="text" placeholder="Search store" @focus="togglePicker" ref="inputDOM">
                     <xIcon @click="closeSearchBar" class="close-icon"/>
                 </form>
                 <ul v-if="searchQuery?.length>0 && showSearchBar">
@@ -74,6 +74,8 @@
     const route = useRoute()
     const inputValue = ref()
 
+    const inputDOM = ref(null)
+
     const showSearchBar = ref(false)
 
     const searchQuery = ref(store.getters.getSearch)
@@ -91,7 +93,9 @@
 
     function searchClick(){
         showSearchBar.value = !showSearchBar.value
+        inputDOM.value.focus()
     }
+    
     function closeSearchBar(){
         showSearchBar.value = false
     }
