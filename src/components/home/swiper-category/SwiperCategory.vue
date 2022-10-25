@@ -29,7 +29,7 @@
       }"
     >
     <div class="swiper-category_title">
-        <h3>
+        <h3 >
           {{ title }}
           <span>
           <ArrowIcon/>

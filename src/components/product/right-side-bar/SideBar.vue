@@ -11,8 +11,7 @@
             <p>{{item.price.formatted_with_symbol}}</p>
         </div>
         <div class="buttons">
-            <button class="buy-now">buy now</button>
-            <!-- <button v-if="cartContainsItem" class="add-card">view in cart</button> -->
+            <button @click="checkout(item)" class="buy-now">buy now</button>
             <button :disabled="store.getters.getAddCartStatus" class="add-card" >
                 <span v-if="!store.getters.getAddCartStatus && !cartContainsItem" @click="addTocard(item.id)">add to card</span>
                 <router-link v-if="cartContainsItem" to="/cart">
@@ -24,15 +23,38 @@
             </button>
         </div>
         <div class="product-detail">
-            <div v-for="variant in item.variant_groups" :key="variant.id" class="product-detail_container">
-                <span>
-                    {{variant.name}}
-                </span>
+            <div class="product-detail_container">
+                <span>Refund Type</span>
                 <div>
-                    <span v-for="option in variant.options" :key="option.id">
-                        <span v-if="option.name==='windows'"><WindowsIcon/></span>
-                        <span v-else-if="option.name==='mac'"><MacIcon/></span>
-                        <span v-else>{{option.name}}</span>
+                    <span >
+                        <span>Self-Refundable</span>
+                    </span>
+                </div>
+            </div>
+            <div class="product-detail_container">
+                <span>Developer</span>
+                <div>
+                    <span >
+                        <span>Epic Games</span>
+                    </span>
+                </div>
+            </div>
+            <div class="product-detail_container">
+                <span>Publisher</span>
+                <div>
+                    <span >
+                        <span>Epic Games</span>
+                    </span>
+                </div>
+            </div>
+            <div class="product-detail_container">
+                <span>Platform</span>
+                <div>
+                    <span>
+                        <span v-if="platform.includes('windows')"><WindowsIcon/></span>
+                    </span>
+                    <span>
+                        <span v-if="platform.includes('mac')"><MacIcon/></span>
                     </span>
                 </div>
             </div>
@@ -50,7 +72,7 @@
     const props = defineProps({item: Object})
     const width = ref()
     const store = useStore()
-
+    const platform  = ref([])
     const cartContainsItem = computed(()=>{
         return store.state.cart.cartDetail?.line_items.some(item=>item.product_id===props.item.id)
     })
@@ -65,4 +87,15 @@
     function addTocard(id){
         store.dispatch("addToCart", id)
     }
+
+    function checkout (data){
+        store.dispatch("checkoutItem", data)
+        console.log(data)
+    }
+
+    props.item.categories.filter((el)=>{
+        if(el.slug==='windows' || el.slug==='mac'){
+            platform.value.push(el.slug)
+        }
+    })
 </script>

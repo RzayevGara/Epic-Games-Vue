@@ -66,6 +66,10 @@ export default {
             }
           }
         }
+      },
+      setFilterQueryByCategory(state, item){
+        state.filterQuery = []
+        state.filterQuery.push(item)
       }
 
     },

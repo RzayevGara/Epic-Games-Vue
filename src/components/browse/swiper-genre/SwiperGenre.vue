@@ -21,10 +21,10 @@
           <Buttons/>
       </div>
         <swiper-slide v-for="item in genre" :key="item.id" >
-          <router-link :to="`/`">
+          <div @click="fetchCategories(item.slug)">
               <img :src="item.assets[0].url" alt="image" />
               <h2 class="swiper-genre-content_name">{{ item.name }} Games</h2>
-          </router-link>
+          </div>
         </swiper-slide>
       </swiper>
     <SwiperGenreSkeleton v-else/>
@@ -39,6 +39,25 @@
       // Import Swiper styles
       import Buttons from '../../home/swiper-category/Buttons.vue'
       import "swiper/css";
+      import {inject} from 'vue'
+      import {useRouter, useRoute}from 'vue-router'
+      import {useStore} from 'vuex'
+
+      const route = useRoute()
+      const router = useRouter()
+      const store = useStore()
+
+      const fetchSort = inject('fetch')
   
       const props = defineProps({ genre: Object, title: String });
+
+      function fetchCategories(slug){
+        let queryNew =JSON.parse(JSON.stringify(route.query))
+        queryNew.query = slug
+        store.commit("setFilterQueryByCategory", slug)
+        router.push({ query: queryNew })
+        .then(()=>{
+            fetchSort()
+        })
+      }
   </script>
