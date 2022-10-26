@@ -4,6 +4,7 @@ import product from './modules/product'
 import browse from './modules/browse'
 import auth from './modules/auth'
 import cart from './modules/cart'
+import checkout from './modules/checkout'
 
 export default createStore({
   modules: {
@@ -11,7 +12,8 @@ export default createStore({
     product,
     browse,
     auth,
-    cart
+    cart,
+    checkout
   },
   // state(){
   //   return{

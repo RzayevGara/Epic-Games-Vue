@@ -9,12 +9,13 @@
                     <SwiperProduct :item="product"/>
                     <p>{{product.description.replace(/<[^>]*>?/gm, '')}}</p>
                 </div>
-                <SideBar :item="product"/>
+                <SideBar :item="product" @showCheckoutModal="checkoutModal"/>
             </div>
             <ProductSpec :item="product.description"/>
         </div>
         <ProductSkeleton v-else/>
     </section>
+    <Checkout v-if="showCheckoutModal" :closeFunction="closeCheckoutModal"/>
 </template>
 
 <script setup>
@@ -22,9 +23,12 @@
     import SideBar from '../../components/product/right-side-bar/SideBar.vue'
     import ProductSpec from '../../components/product/product-spec/ProductSpec.vue'
     import ProductSkeleton from '../../components/product/product-skeleton/ProductSkeleton.vue'
+    import Checkout from '../../components/checkout/Checkout.vue'
     import {useStore} from 'vuex'
     import { useRoute } from 'vue-router'
     import {ref, watch} from 'vue'
+    const showCheckoutModal = ref(false)
+
 
     const store = useStore()
     const route = useRoute()
@@ -43,4 +47,16 @@
             store.dispatch('fetchProduct', activePath.value)
         }
     }, {deep: true})
+
+    function checkoutModal(data){
+        showCheckoutModal.value = data
+        if(data){
+            document.getElementsByTagName('body')[0].classList.add('active-body')
+        }
+    }
+
+    function closeCheckoutModal(){
+        showCheckoutModal.value = false
+        document.getElementsByTagName('body')[0].classList.remove('active-body')
+    }
 </script>

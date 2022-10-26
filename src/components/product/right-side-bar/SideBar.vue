@@ -69,14 +69,19 @@
     import MacIcon from '../../../assets/image/svg/MacOS.svg'
     import { ref, watch, computed} from 'vue';
     import {useStore} from 'vuex'
+    import {useRouter} from 'vue-router'
     const props = defineProps({item: Object})
+    const emit = defineEmits(['showCheckoutModal'])
     const width = ref()
     const store = useStore()
+    const router = useRouter()
     const platform  = ref([])
+    const showCheckoutModal = ref(false)
     const cartContainsItem = computed(()=>{
         return store.state.cart.cartDetail?.line_items.some(item=>item.product_id===props.item.id)
     })
     
+
     function handleResize() {
         width.value = window.innerWidth;
     }
@@ -89,8 +94,13 @@
     }
 
     function checkout (data){
-        store.dispatch("checkoutItem", data)
-        console.log(data)
+        if(store.getters.getLogStatus){
+            store.dispatch("checkoutToken", data)
+            showCheckoutModal.value = true
+            emit('showCheckoutModal', showCheckoutModal.value)
+        }else{
+            router.push("/login")
+        }
     }
 
     props.item.categories.filter((el)=>{

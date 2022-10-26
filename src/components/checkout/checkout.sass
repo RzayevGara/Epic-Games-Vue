@@ -1,0 +1,116 @@
+#checkout-page
+    @include flex(row, center)
+    font-family: $openSans
+    .checkout-black
+        @include size(100%, 100%)
+        position: fixed
+        top: 0
+        left: 0
+        z-index: 9
+        background-color: rgba(18, 18, 18, 0.522)
+    .checkout-container
+        top: 0
+        z-index: 10
+        position: fixed
+        @include size(100%, 100%)
+        max-width: 1200px
+        background-color: white
+        border: 2px solid #4d4d4d
+        .checkout-loading
+            @include flex(column, center, center)
+            @include size(100%, 100%)
+            gap: 1.3rem
+            p
+                @include font(1.2rem, 500)
+        .checkout
+            .checkout-title
+                padding: 1.7rem 1rem
+                @include flex(row, space-between, center)
+                border-bottom: 1px solid rgba(20,20,20,0.16)
+                h5
+                    @include font(.875rem, 600)
+                    text-transform: uppercase
+                div
+                    @include flex(row, $align: center)
+                    gap: .7rem
+                    h3
+                        text-transform: uppercase
+                        @include flex(row, $align: center)
+                        color: #0078F2
+                        gap: .2rem
+                        svg
+                            width: 1rem
+                        span
+                            @include font(.7rem)
+                    .close-icon
+                        width: 13px
+                        path
+                            fill: rgba(20,20,20,0.72)
+            .order-detail
+                @include flex(column)
+                padding: 0 1rem
+                h3
+                    padding: 15px 0
+                    @include font(.875rem, 400)
+                    text-transform: uppercase
+                .order-list
+                    li
+                        padding: 12px 24px
+                        @include flex(row, $align: center)
+                        background-color: #f2f2f2
+                        border-radius: 4px
+                        gap: 10px
+                        img
+                            width: 50px
+                            border-radius: 4px
+                        div
+                            width: 100%
+                            h4
+                                @include font(1rem, 400)
+                                text-overflow: ellipsis
+                                overflow: hidden
+                                width: 80%
+                                height: 1.2em
+                                white-space: nowrap
+                            p
+                                @include font(.875rem, 500)
+                                margin-top: .4rem
+                .price-detail
+                    padding: 12px 24px
+                    background-color: #f2f2f2
+                    border-radius: 4px
+                    margin-top: 1rem
+                    @include flex(column)
+                    gap: .5rem
+                    p   
+                        @include flex(row, space-between, center)
+                        font-size: .875rem
+                        color: rgba(20,20,20,0.72)
+                    .discount
+                        padding-bottom: .5rem 
+                        border-bottom: 1px solid rgba(20,20,20,0.16)
+                    .total
+                        font-weight: 700
+                .discount-box
+                    padding: 24px
+                    background-color: #f2f2f2
+                    border-radius: 4px
+                    margin-top: 1rem
+                    form
+                        @include flex(row, $align: center)
+                        gap: .7rem
+                        border: 1px solid rgba(20,20,20,0.16)
+                        border-radius: 4px
+                        overflow: hidden
+                        input
+                            padding-left: .8rem
+                            width: 100%
+                            &:focus
+                                outline: none
+                        button
+                            height: 100%
+                            padding: .7rem .9rem
+                            background-color: #0078F2
+                            color: white
+                            font-size: 12px
+                            letter-spacing: 1px
