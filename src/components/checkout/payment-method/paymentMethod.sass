@@ -1,0 +1,48 @@
+.order-detail
+    .payment-method
+        h3
+            padding: 15px 0
+            @include font(.875rem, 400)
+            text-transform: uppercase
+    .payment-input
+        form
+            @include flex(column)
+            gap: 1rem
+            .form-container
+                @include flex(row, space-between)
+                width: 100%
+                div
+                    @include flex(column)
+                    width: 46%
+                label
+                    @include font(.9rem, 600)
+                    padding-bottom: .5rem
+                input
+                    width: 100%
+                    border: 1px solid black
+                    border-radius: 4px
+                    height: 35px
+                    padding: 0 .5rem
+                    &:focus
+                        outline: none
+                .input-error
+                    border: 1px solid red !important
+            .card-number
+                @include flex(column)
+                gap: 0
+                .input-container
+                    width: 100%
+                    padding: 0 .5rem
+                    border: 1px solid black
+                    border-radius: 4px
+                    @include flex(row, center, center)
+                    input
+                        padding: 0
+                        border: none
+
+                    span
+                        width: 30px
+                        height: 30px
+                        @include flex(row, center, center)
+                        svg
+                            @include size(auto, auto)

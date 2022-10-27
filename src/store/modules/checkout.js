@@ -8,7 +8,10 @@ export default {
     state:{
         liveObject: null,
         checkoutToken: null,
-        loadingCheckout: false
+        loadingCheckout: false,
+        loadingDiscount: false,
+        discountMessage: null,
+        discountSucceed: false,
     },
     mutations: {
         setLiveObject(state, item) {
@@ -19,6 +22,15 @@ export default {
         },
         setLoadigCheckout(state, item) {
           state.loadingCheckout = item
+        },
+        setLoadingDiscount(state, item) {
+          state.loadingDiscount = item
+        },
+        setDiscountMessage(state, item) {
+          state.discountMessage = item 
+        },
+        setDiscountSucceed(state, item) {
+          state.discountSucceed = item 
         }
     },
     actions: {
@@ -35,11 +47,20 @@ export default {
           });
         },
         checkDiscountCode({commit, state},data){
+          commit("setLoadingDiscount", true)
           commerce.checkout.checkDiscount(state.checkoutToken, {
             code: data,
           }).then((response) => {
             commit("setLiveObject", response)
-          });
+            commit("setDiscountMessage", null)
+            commit("setLoadingDiscount", false)
+            commit("setDiscountSucceed", true)
+          })
+          .catch((error)=>{
+            commit("setLoadingDiscount", false)
+            commit("setDiscountMessage", 'The provided discount code is not valid.')
+            console.log(error)
+          })
         },
         checkoutItem({commit}, data){
             commerce.checkout.capture(response.id, {
@@ -80,8 +101,17 @@ export default {
       getLoadingCheckout(state){
         return state.loadingCheckout
       },
+      getLoadingDiscount(state){
+        return state.loadingDiscount
+      },
       getLiveObject(state){
         return state.liveObject
+      },
+      getDiscountMessage(state){
+        return state.discountMessage
+      },
+      getDiscountSucceed(state){
+        return state.discountSucceed
       },
     }
 }

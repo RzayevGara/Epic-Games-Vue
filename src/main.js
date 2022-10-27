@@ -27,4 +27,3 @@ app.use(store)
 app.use(vuetify)
 app.provide("commerce", commerce);
 app.mount('#app')
-
