@@ -17,7 +17,8 @@ export default {
         errorMessageSign: null,
         errorMessageLogin: null,
         logStatus: null,
-        customerInfo: null
+        customerInfo: null,
+        redirectUrl: null,
 
     },
     mutations: {
@@ -39,6 +40,11 @@ export default {
         },
         setCustomerInfo(state, item) {
             state.customerInfo = item
+        },
+        setRedirectUrl(state, item){
+            if(!item.includes("login") && !item.includes("sign")){
+                state.redirectUrl = item
+            }
         }
 
     },
@@ -179,5 +185,8 @@ export default {
         getCustomerInfo(state){
             return state.customerInfo
         },
+        getRedirectUrl(state){
+            return state.redirectUrl
+        }
     }
 }

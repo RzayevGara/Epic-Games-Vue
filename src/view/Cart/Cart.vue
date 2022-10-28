@@ -51,12 +51,15 @@
 
 <script setup>
     import {useStore} from 'vuex'
+    import {useRouter} from 'vue-router'
     import CartSkeleton from '../../components/cart/skeleton/CartSkeleton.vue'
     import PriceBoxSkeleton from '../../components/cart/price-box-skeleton/PriceBoxSkeleton.vue'
     import EmptyIcon from '../../assets/image/svg/cart-empty.svg'
     import CartItem from '../../components/cart/cart-item/CartItem.vue'
     import Checkout from '../../components/checkout/Checkout.vue'
     import {ref, provide} from 'vue'
+    
+    const router = useRouter()
     const store = useStore()
     const showCheckoutModal = ref(false)
 

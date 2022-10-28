@@ -32,10 +32,13 @@
 <script setup>
     import GoogleIcon from '../../../assets/image/svg/google.svg'
     import {useStore} from 'vuex'
-    import {useRouter} from 'vue-router'
-    import {ref, watch} from 'vue'
+    import {useRouter, useRoute} from 'vue-router'
+    import {ref, watch, onMounted} from 'vue'
     const store = useStore()
-    const router= useRouter()
+    const route= useRoute()
+    const router= useRouter(route.query.redirect)
+
+    const redirect = ref(route.query.redirect)
 
     defineProps({authData: Object, errorMsg: [String, Boolean]})
 
@@ -44,7 +47,17 @@
     watch(store.state.auth, (to)=>{
         logStatus.value = to.logStatus
         if(logStatus.value){
-            router.push({ path: '/' })
+            if(store.getters.getRedirectUrl){
+                router.push({ path:  store.getters.getRedirectUrl})
+            }else{
+                router.push({ path: "/"})
+            }
         }
+    })
+
+    
+    onMounted(()=>{
+        store.commit("setRedirectUrl", router.options.history.state.back)
+        router.push({query: {redirect: store.getters.getRedirectUrl} })
     })
 </script>
