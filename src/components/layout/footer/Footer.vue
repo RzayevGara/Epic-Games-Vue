@@ -48,13 +48,7 @@
     <section class="footer-copyright">
         <div>
             <p>
-              © 2022, Epic Games, Inc. All rights reserved. Epic, Epic Games, the Epic
-              Games logo, Fortnite, the Fortnite logo, Unreal, Unreal Engine, the
-              Unreal Engine logo, Unreal Tournament, and the Unreal Tournament logo
-              are trademarks or registered trademarks of Epic Games, Inc. in the
-              United States of America and elsewhere. Other brands or product names
-              are the trademarks of their respective owners. Non-US transactions
-              through Epic Games International, S.à r.l.
+              “Epic Game clone” consept website created for only portfolio showcase. This website is not in use on web or somewhere.
             </p>
         </div>
     </section>
