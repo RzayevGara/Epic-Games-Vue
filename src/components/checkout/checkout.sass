@@ -1,5 +1,6 @@
 @import './order-summary/orderSummary'
 @import './payment-method/paymentMethod'
+@import './success-checkout/checkoutSuccess'
     
 #checkout-page
     @include flex(row, center)
@@ -32,6 +33,10 @@
                 padding: 1.7rem 1rem
                 @include flex(row, space-between, center)
                 border-bottom: 1px solid rgba(20,20,20,0.16)
+                @include responsive_sm
+                    width: calc(100% - 308px)
+                    height: 80px
+                    padding: 0 1rem
                 h5
                     @include font(.875rem, 600)
                     text-transform: uppercase
@@ -50,8 +55,14 @@
                     .close-icon
                         cursor: pointer
                         width: 13px
+                        @include responsive_sm
+                            display: none
                         path
                             fill: rgba(20,20,20,0.72)
             .order-detail
                 @include flex(column)
                 padding: 0 1rem 13rem
+                @include responsive_sm
+                    @include flex(row)
+                    padding: 0
+                    overflow-y: hidden

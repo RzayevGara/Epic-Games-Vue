@@ -178,6 +178,6 @@ export default {
         },
         getCustomerInfo(state){
             return state.customerInfo
-        }
+        },
     }
 }

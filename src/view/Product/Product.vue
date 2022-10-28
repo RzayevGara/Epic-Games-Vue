@@ -15,7 +15,7 @@
         </div>
         <ProductSkeleton v-else/>
     </section>
-    <Checkout v-if="showCheckoutModal" :closeFunction="closeCheckoutModal"/>
+    <Checkout v-if="showCheckoutModal"/>
 </template>
 
 <script setup>
@@ -26,7 +26,7 @@
     import Checkout from '../../components/checkout/Checkout.vue'
     import {useStore} from 'vuex'
     import { useRoute } from 'vue-router'
-    import {ref, watch} from 'vue'
+    import {ref, watch, provide} from 'vue'
     const showCheckoutModal = ref(false)
 
 
@@ -59,4 +59,6 @@
         showCheckoutModal.value = false
         document.getElementsByTagName('body')[0].classList.remove('active-body')
     }
+    provide("closeCheckout", closeCheckoutModal);
+
 </script>

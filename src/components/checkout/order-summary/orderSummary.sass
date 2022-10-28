@@ -1,107 +1,142 @@
 .order-detail
     .order-summary
+        @include responsive_sm
+            width: 308px
+            height: 100%
+            background-color: #f2f2f2
+            position: absolute
+            top: 0
+            right: 0
+            overflow-y: auto
         h3
             padding: 15px 0
             @include font(.875rem, 400)
             text-transform: uppercase
-        .order-list
-            li
+            svg
+                width: 1rem
+                display: none
+                @include responsive_sm
+                    display: flex
+                    cursor: pointer
+            @include responsive_sm
+                background-color: #f2f2f2
+                position: sticky
+                height: 80px
+                width: 100%
+                padding: 0 1rem
+                top: 0
+                @include flex(row, space-between, center)
+        .order-summary-container
+            @include responsive_sm
+                padding-bottom: 8rem
+            .order-list
+                li
+                    padding: 12px 24px
+                    @include flex(row, $align: center)
+                    background-color: #f2f2f2
+                    border-radius: 4px
+                    gap: 10px
+                    img
+                        width: 50px
+                        border-radius: 4px
+                    div
+                        width: 100%
+                        h4
+                            @include font(1rem, 400)
+                            text-overflow: ellipsis
+                            overflow: hidden
+                            width: 80%
+                            height: 1.2em
+                            white-space: nowrap
+                        p
+                            @include font(.875rem, 500)
+                            margin-top: .4rem
+            .price-detail
                 padding: 12px 24px
-                @include flex(row, $align: center)
                 background-color: #f2f2f2
                 border-radius: 4px
-                gap: 10px
-                img
-                    width: 50px
-                    border-radius: 4px
-                div
-                    width: 100%
-                    h4
-                        @include font(1rem, 400)
-                        text-overflow: ellipsis
-                        overflow: hidden
-                        width: 80%
-                        height: 1.2em
-                        white-space: nowrap
-                    p
-                        @include font(.875rem, 500)
-                        margin-top: .4rem
-        .price-detail
-            padding: 12px 24px
-            background-color: #f2f2f2
-            border-radius: 4px
-            margin-top: 1rem
-            @include flex(column)
-            gap: .5rem
-            p   
-                @include flex(row, space-between, center)
-                font-size: .875rem
-                color: rgba(20,20,20,0.72)
-            .discount
-                padding-bottom: .5rem 
-                border-bottom: 1px solid rgba(20,20,20,0.16)
-            .total
-                font-weight: 700
-        .discount-box
-            padding: 24px
-            background-color: #f2f2f2
-            border-radius: 4px
-            margin-top: 1rem
-            form
-                @include flex(row, center, center)
-                gap: .7rem
-                border: 1px solid rgba(20,20,20,0.16)
+                margin-top: 1rem
+                @include flex(column)
+                gap: .5rem
+                p   
+                    @include flex(row, space-between, center)
+                    font-size: .875rem
+                    color: rgba(20,20,20,0.72)
+                .discount
+                    padding-bottom: .5rem 
+                    border-bottom: 1px solid rgba(20,20,20,0.16)
+                .total
+                    font-weight: 700
+            .discount-box
+                padding: 24px
+                background-color: #f2f2f2
                 border-radius: 4px
-                overflow: hidden
-                @include size(100%, 40px)
-                input
-                    padding-left: .8rem
-                    width: 100%
-                    &:focus
-                        outline: none
-                button
-                    height: 100%
-                    width: 120px
-                    background-color: #0078F2
-                    color: white
-                    font-size: 12px
-                    letter-spacing: 1px
-            .discount-code
-                p
+                margin-top: 1rem
+                form
+                    @include flex(row, center, center)
+                    gap: .7rem
+                    border: 1px solid rgba(20,20,20,0.16)
+                    border-radius: 4px
+                    overflow: hidden
+                    @include size(100%, 40px)
+                    input
+                        padding-left: .8rem
+                        width: 100%
+                        &:focus
+                            outline: none
+                    button
+                        height: 100%
+                        width: 120px
+                        background-color: #0078F2
+                        color: white
+                        font-size: 12px
+                        letter-spacing: 1px
+                .discount-code
+                    p
+                        font-size: 14px
+                        span
+                            @include font(1rem, 600)
+                            text-decoration: underline
+                .test-code
+                    margin-top: .6rem
                     font-size: 14px
                     span
                         @include font(1rem, 600)
                         text-decoration: underline
-            .test-code
-                margin-top: .6rem
-                font-size: 14px
-                span
-                    @include font(1rem, 600)
-                    text-decoration: underline
-        .confirm-order
-            position: fixed
-            bottom: 0
-            left: 0
-            width: 100%
-            padding: 20px 15px
-            border-top: 1px solid #f2f2f2
-            box-shadow: 2px 0 4px rgb(0 0 0 / 25%)
-            background-color: white
-            @include flex(column, center, center)
-            p
-                font-size: 12px
-                span
-                    color: #0078f2
-            button
-                margin-top: 10px
-                background-color: #0078f2
-                color: white
-                text-transform: uppercase
-                @include font(12px, 600)
-                max-width: 360px
+            .confirm-order
+                position: fixed
+                bottom: 0
+                left: 0
                 width: 100%
-                padding: 15px 30px
-                border-radius: 4px 
-                cursor: pointer
-                height: 60px
+                padding: 20px 15px
+                border-top: 1px solid #f2f2f2
+                box-shadow: 2px 0 4px rgb(0 0 0 / 25%)
+                background-color: white
+                @include flex(column, center, center)
+                @include responsive_sm
+                    bottom: 3px
+                    left: auto
+                    width: 306px
+
+                p
+                    font-size: 12px
+                    @include responsive_sm
+                        display: none
+                    span
+                        color: #0078f2
+                button
+                    margin-top: 10px
+                    background-color: #0078f2
+                    color: white
+                    text-transform: uppercase
+                    @include font(12px, 600)
+                    max-width: 360px
+                    width: 100%
+                    padding: 15px 30px
+                    border-radius: 4px 
+                    height: 60px
+                    opacity: .4
+                    cursor: pointer
+                .button-active
+                    opacity: 1
 

@@ -38,7 +38,7 @@
                                 Subtotal
                                 <span>{{store.getters.getCartDetail?.subtotal.formatted_with_symbol}}</span>
                             </p>
-                            <button class="checkout-btn">check out</button>
+                            <button class="checkout-btn" @click="checkout()">check out</button>
                         </div>
                     </div>
                 </div>
@@ -46,6 +46,7 @@
             </div>
         </div>
     </section>
+    <Checkout v-if="showCheckoutModal"/>
 </template>
 
 <script setup>
@@ -54,5 +55,25 @@
     import PriceBoxSkeleton from '../../components/cart/price-box-skeleton/PriceBoxSkeleton.vue'
     import EmptyIcon from '../../assets/image/svg/cart-empty.svg'
     import CartItem from '../../components/cart/cart-item/CartItem.vue'
+    import Checkout from '../../components/checkout/Checkout.vue'
+    import {ref, provide} from 'vue'
     const store = useStore()
+    const showCheckoutModal = ref(false)
+
+    function checkout (data){
+        if(store.getters.getLogStatus){
+            store.dispatch("checkoutTokenCart", data)
+            showCheckoutModal.value = true
+            document.getElementsByTagName('body')[0].classList.add('active-body')
+        }else{
+            router.push("/login")
+        }
+    }
+
+    function closeCheckoutModal(){
+        showCheckoutModal.value = false
+        document.getElementsByTagName('body')[0].classList.remove('active-body')
+    }
+    provide("closeCheckout", closeCheckoutModal);
+
 </script>

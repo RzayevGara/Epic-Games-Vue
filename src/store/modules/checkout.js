@@ -12,6 +12,17 @@ export default {
         loadingDiscount: false,
         discountMessage: null,
         discountSucceed: false,
+        cardInfo: {
+          cardNumber: null,
+          cardNumberVal: false,
+          cardDate: null,
+          cardDateVal: false,
+          cardCVC: null,
+          cardCVCVal: false
+        },
+        checkoutErrorMsg: null,
+        checkoutConfirmLoading: false,
+        checkoutConfirmStatus: false
     },
     mutations: {
         setLiveObject(state, item) {
@@ -31,12 +42,45 @@ export default {
         },
         setDiscountSucceed(state, item) {
           state.discountSucceed = item 
+        },
+        setCardNumber(state, item){
+          state.cardInfo.cardNumber = item.value
+          state.cardInfo.cardNumberVal = item.status
+        },
+        setCardDate(state, item){
+          state.cardInfo.cardDate = item.value
+          state.cardInfo.cardDateVal = item.status
+        },
+        setCardCVC(state, item){
+          state.cardInfo.cardCVC = item.value
+          state.cardInfo.cardCVCVal = item.status
+        },
+        setCheckoutErrorMsg(state, item){
+          state.checkoutErrorMsg = item
+        },
+        setCheckoutConfirmLoading(state, item){
+          state.checkoutConfirmLoading = item
+        },
+        setCheckoutConfirmStatus(state, item){
+          state.checkoutConfirmStatus = item
         }
     },
     actions: {
         checkoutToken({commit}, data){
             commit("setLoadigCheckout", true)
           commerce.checkout.generateTokenFrom('permalink', data.permalink)
+          .then(response => {
+            commit("setCheckoutToken", response.id)
+            commerce.checkout.getLive(response.id)
+            .then((liveObject) => {
+                commit("setLiveObject", liveObject)
+                commit("setLoadigCheckout", false)
+            });
+          });
+        },
+        checkoutTokenCart({commit}){
+            commit("setLoadigCheckout", true)
+          commerce.checkout.generateTokenFrom('cart', commerce.cart.id())
           .then(response => {
             commit("setCheckoutToken", response.id)
             commerce.checkout.getLive(response.id)
@@ -62,15 +106,17 @@ export default {
             console.log(error)
           })
         },
-        checkoutItem({commit}, data){
-            commerce.checkout.capture(response.id, {
+        checkoutItem({commit, state}, data){
+          const [month, year] = state.cardInfo.cardDate.split('/')
+          commit("setCheckoutConfirmLoading", true)
+            commerce.checkout.capture(state.checkoutToken, {
                 customer: {
-                  firstname: 'John',
-                  lastname: 'Doe',
-                  email: 'john.doe@example.com',
+                  firstname: data.firstname,
+                  lastname: data.lastname,
+                  email: data.email
                 },
                 shipping: {
-                  name: 'John Doe',
+                  name:  data.firstname,
                   street: '123 Fake St',
                   town_city: 'San Francisco',
                   county_state: 'CA',
@@ -83,18 +129,25 @@ export default {
                 payment: {
                   gateway: 'test_gateway',
                   card: {
-                    number: '4242 4242 4242 4242',
-                    expiry_month: '01',
-                    expiry_year: '2023',
-                    cvc: '123',
+                    number: state.cardInfo.cardNumber,
+                    expiry_month: `${month}`,
+                    expiry_year: `${year}`,
+                    cvc: state.cardInfo.cardCVC,
                     postal_zip_code: '94103',
                   },
                 },
               })
                 .then(response => {
-                  console.log('Great, your checkout was captured successfully! Checkout the response object for receipt info.');
+                  response.line_items = []
+                  commit("setCartDetail", response, { root: true })
+                  commit("setCheckoutErrorMsg", null)
+                  commit("setCheckoutConfirmLoading", false)
+                  commit("setCheckoutConfirmStatus", true)
                 })
-                .catch(error => console.error(error));
+                .catch(error => {
+                  commit("setCheckoutErrorMsg", "Please enter a valid testing card number i.e. 4242 4242 4242 4242")
+                  commit("setCheckoutConfirmLoading", false)
+                });
         }
     },
     getters: {
@@ -113,5 +166,21 @@ export default {
       getDiscountSucceed(state){
         return state.discountSucceed
       },
+      getCardStatus(state){
+        if(state.cardInfo.cardNumberVal && state.cardInfo.cardDateVal && state.cardInfo.cardCVCVal){
+          return true
+        }else{
+          return false
+        }
+      },
+      getCheckoutErrorMsg(state){
+        return state.checkoutErrorMsg
+      },
+      getCheckoutConfirmLoading(state){
+        return state.checkoutConfirmLoading
+      },
+      getCheckoutConfirmStatus(state){
+        return state.checkoutConfirmStatus
+      }
     }
 }
