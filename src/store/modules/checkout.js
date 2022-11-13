@@ -139,7 +139,9 @@ export default {
               })
                 .then(response => {
                   response.line_items = []
+                  response.total_unique_items = 0
                   commit("setCartDetail", response, { root: true })
+                  commit("setCartCount", response.total_unique_items, { root: true })
                   commit("setCheckoutErrorMsg", null)
                   commit("setCheckoutConfirmLoading", false)
                   commit("setCheckoutConfirmStatus", true)

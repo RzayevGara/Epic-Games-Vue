@@ -85,9 +85,11 @@
         let queryNew =JSON.parse(JSON.stringify(route.query))
         if(JSON.parse(JSON.stringify(filterQuery.value)).length>0){
             queryNew.query = filterQuery.value.map(el=>el)
+            queryNew.page = 1
         }else{
             if(route.query.query.length>0){
                 queryNew.query = filterQuery.value.map(el=>el)
+                queryNew.page = 1
             }
         }
         if(Object.entries(queryNew).toString() !== Object.entries(route.query).toString()){
@@ -116,6 +118,7 @@
     function doneFilterPC(){
         let queryNew =JSON.parse(JSON.stringify(route.query))
         queryNew.query = filterQuery.value.map(el=>el)
+        queryNew.page = 1
         router.push({ query: queryNew })
         .then(()=>{
             fetchSort()

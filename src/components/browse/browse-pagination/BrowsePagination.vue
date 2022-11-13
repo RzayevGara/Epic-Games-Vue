@@ -19,16 +19,22 @@
             </v-row>
     </v-container>
     </div>
+    {{page}}
 </template>
 
 <script setup>
     import {useRouter, useRoute} from 'vue-router'
-    import {ref, inject} from 'vue'    
-    defineProps({ meta: Object})
+    import {ref, inject, watch} from 'vue'    
+    const props = defineProps({ meta: Object})
     const router = useRouter()
     const route = useRoute()
     const page = ref(Number(route.query.page) || 1)
     const fetchSort = inject('fetch')
+
+
+    watch(route, (to)=>{
+        page.value = +to.query.page
+    })
 
     function updatePage(){
         let query =JSON.parse(JSON.stringify(route.query)) ;

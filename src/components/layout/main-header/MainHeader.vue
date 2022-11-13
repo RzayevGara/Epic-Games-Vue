@@ -39,7 +39,7 @@
                 <div v-if="showMenu" class="bottom-menu">
                     <ul>
                         <li class="active-list"><router-link exactActiveClass="active-list" :to="{name: 'HomePage'}">Discovery</router-link></li>
-                        <li class="active-list"><router-link exactActiveClass="active-list" :to="{name: 'BrowsePage', query: {sortBy: 'created_at', sortDir: 'desc', page: 1}}">Browse</router-link></li>
+                        <li @click="browseClick" class="active-list"><router-link exactActiveClass="active-list" :to="{name: 'BrowsePage', query: {sortBy: 'created_at', sortDir: 'desc', page: 1}}">Browse</router-link></li>
                         <li class="active-list"><router-link :to="{name: ''}">News</router-link></li>
                     </ul>
                 </div>
@@ -66,7 +66,7 @@
     import ArrowIcon from '../../../assets/image/svg/arrow-up.svg'
     import xIcon from '../../../assets/image/svg/x-symbol.svg'
     import BasketIcon from '../../../assets/image/svg/basket-icon.svg'
-    import {ref,watch, inject} from 'vue'
+    import {ref,watch} from 'vue'
     import { useRoute } from 'vue-router'
     import {useStore} from 'vuex'
     import debounce from "lodash/debounce"
@@ -130,11 +130,11 @@
 
     function browseClick(){
         store.dispatch('fetchBrowse',{
-            category_slug: route.query.query?.length>0 && route.query.query || 'browse',
+            category_slug: 'browse',
             limit: 20,
-            page: route.query.page,
-            sortBy: route.query.sortBy!==undefined?route.query.sortBy:"created_at",
-            sortDirection: route.query.sortDir!==undefined?route.query.sortDir:"desc",
+            page: 1,
+            sortBy: "created_at",
+            sortDirection: "desc",
         })
         store.commit("setFilterRoute", [])
     }

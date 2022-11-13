@@ -100,7 +100,6 @@
 
     function confirmOrder(){
       if(store.getters.getCardStatus){
-        console.log("confirm")
         store.dispatch("checkoutItem", store.getters.getCustomerInfo)
       }
     }

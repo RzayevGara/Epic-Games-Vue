@@ -47,4 +47,6 @@
 
     store.commit("setDiscountMessage", null)
     store.commit("setDiscountSucceed", false)
+    store.commit("setCheckoutConfirmStatus", false)
+
 </script>
