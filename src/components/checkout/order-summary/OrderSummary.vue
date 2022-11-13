@@ -80,9 +80,11 @@
 
 <script setup>
     import {useStore} from 'vuex'
+    import {useRoute} from 'vue-router'
     import {computed, ref, inject} from 'vue'
     import closeIcon from '../../../assets/image/svg/x-symbol.svg'
     const store = useStore()
+    const route = useRoute()
 
     const closeCheckout = inject('closeCheckout')
 
@@ -100,7 +102,12 @@
 
     function confirmOrder(){
       if(store.getters.getCardStatus){
-        store.dispatch("checkoutItem", store.getters.getCustomerInfo)
+        if(route.name === "CartPage"){
+          store.dispatch("checkoutCart", store.getters.getCustomerInfo)
+        }
+        else if(route.name === "ProductPage"){
+          store.dispatch("checkoutItem", store.getters.getCustomerInfo)
+        }
       }
     }
 </script>

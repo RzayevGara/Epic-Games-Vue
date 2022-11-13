@@ -106,7 +106,7 @@ export default {
             console.log(error)
           })
         },
-        checkoutItem({commit, state}, data){
+        checkoutCart({commit, state}, data){
           const [month, year] = state.cardInfo.cardDate.split('/')
           commit("setCheckoutConfirmLoading", true)
             commerce.checkout.capture(state.checkoutToken, {
@@ -142,6 +142,51 @@ export default {
                   response.total_unique_items = 0
                   commit("setCartDetail", response, { root: true })
                   commit("setCartCount", response.total_unique_items, { root: true })
+                  commit("setCheckoutErrorMsg", null)
+                  commit("setCheckoutConfirmLoading", false)
+                  commit("setCheckoutConfirmStatus", true)
+                })
+                .catch(error => {
+                  commit("setCheckoutErrorMsg", "Please enter a valid testing card number i.e. 4242 4242 4242 4242")
+                  commit("setCheckoutConfirmLoading", false)
+                });
+        },
+        checkoutItem({commit, state}, data){
+          const [month, year] = state.cardInfo.cardDate.split('/')
+          commit("setCheckoutConfirmLoading", true)
+            commerce.checkout.capture(state.checkoutToken, {
+                customer: {
+                  firstname: data.firstname,
+                  lastname: data.lastname,
+                  email: data.email
+                },
+                shipping: {
+                  name:  data.firstname,
+                  street: '123 Fake St',
+                  town_city: 'San Francisco',
+                  county_state: 'CA',
+                  postal_zip_code: '94103',
+                  country: 'US',
+                },
+                fulfillment: {
+                  shipping_method: 'ship_1ypbroE658n4ea',
+                },
+                payment: {
+                  gateway: 'test_gateway',
+                  card: {
+                    number: state.cardInfo.cardNumber,
+                    expiry_month: `${month}`,
+                    expiry_year: `${year}`,
+                    cvc: state.cardInfo.cardCVC,
+                    postal_zip_code: '94103',
+                  },
+                },
+              })
+                .then(response => {
+                  // response.line_items = []
+                  // response.total_unique_items = 0
+                  // commit("setCartDetail", response, { root: true })
+                  // commit("setCartCount", response.total_unique_items, { root: true })
                   commit("setCheckoutErrorMsg", null)
                   commit("setCheckoutConfirmLoading", false)
                   commit("setCheckoutConfirmStatus", true)
